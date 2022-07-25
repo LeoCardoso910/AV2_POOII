@@ -10,7 +10,7 @@ class Produto {
     private $estoqueMinimo;
     private $qtdEstoque;
 
-    public function __construct($argCodProduto = null, $argUnidade, $argDescricao, $argValorUnitario, $argEstoqueMinimo, $argQtdEstoque) {
+    function __construct($argCodProduto = null, $argUnidade, $argDescricao, $argValorUnitario, $argEstoqueMinimo, $argQtdEstoque) {
         $this->codProduto = $argCodProduto;
         $this->unidade = $argUnidade;
         $this->descricao = $argDescricao;
