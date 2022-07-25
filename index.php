@@ -33,7 +33,7 @@
   <header class="u-clearfix u-header u-palette-1-light-2 u-header" id="sec-9fa5">
     <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
       <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="1280" data-image-height="1262">
-        <img src="images/f69aed53dbb5bcd6f5cc6d7a9c8dda957767ea33ca1c67ac86ad20100f2d5b9e8a075b298c3e3dfac3accdc9edd9c5b19148fad85eb84492668394_1280.png" class="u-logo-image u-logo-image-1">
+        <img src="img/f69aed53dbb5bcd6f5cc6d7a9c8dda957767ea33ca1c67ac86ad20100f2d5b9e8a075b298c3e3dfac3accdc9edd9c5b19148fad85eb84492668394_1280.png" class="u-logo-image u-logo-image-1">
       </a>
       <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1">
         <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
@@ -88,27 +88,27 @@
       <div class="u-expanded-width u-list u-list-1">
         <div class="u-repeater u-repeater-1">
           <div class="u-align-center u-container-style u-grey-5 u-list-item u-radius-15 u-repeater-item u-shape-round u-list-item-1">
-            <div class="u-container-layout u-similar-container u-container-layout-1"><span class="u-file-icon u-icon u-icon-rounded u-palette-1-base u-radius-10 u-icon-1"><img src="images/3703259.png" alt=""></span>
+            <div class="u-container-layout u-similar-container u-container-layout-1"><span class="u-file-icon u-icon u-icon-rounded u-palette-1-base u-radius-10 u-icon-1"><img src="img/3703259.png" alt=""></span>
               <h5 class="u-custom-font u-font-raleway u-text u-text-1">PRODUTOS</h5>
               <p class="u-text u-text-2">&gt; Lista ​​de produtos disponíveis<br>&gt; Cadastrar Produtos
               </p>
-              <a href="https://nicepage.com/c/table-html-templates" class="u-active-none u-border-2 u-border-active-black u-border-hover-black u-border-palette-1-base u-btn u-button-style u-hover-none u-none u-text-body-color u-text-hover-palette-1-base u-btn-1">acessar produtos</a>
+              <a href="produtos.php" class="u-active-none u-border-2 u-border-active-black u-border-hover-black u-border-palette-1-base u-btn u-button-style u-hover-none u-none u-text-body-color u-text-hover-palette-1-base u-btn-1">acessar produtos</a>
             </div>
           </div>
           <div class="u-align-center u-container-style u-grey-5 u-list-item u-radius-15 u-repeater-item u-shape-round u-list-item-2">
-            <div class="u-container-layout u-similar-container u-container-layout-2"><span class="u-file-icon u-icon u-icon-rounded u-palette-1-base u-radius-10 u-icon-2"><img src="images/679847.png" alt=""></span>
+            <div class="u-container-layout u-similar-container u-container-layout-2"><span class="u-file-icon u-icon u-icon-rounded u-palette-1-base u-radius-10 u-icon-2"><img src="img/679847.png" alt=""></span>
               <h5 class="u-custom-font u-font-raleway u-text u-text-3">VENDAS</h5>
               <p class="u-text u-text-4">&gt; Lista de vendas<br>&gt; Detalhamento de vendas<br>&gt; Cadastrar vendas
               </p>
-              <a href="https://nicepage.com/wysiwyg-html-editor" class="u-active-none u-border-2 u-border-active-black u-border-hover-black u-border-palette-1-base u-btn u-button-style u-hover-none u-none u-text-body-color u-text-hover-palette-1-base u-btn-2">ACESSAR VENDAS</a>
+              <a href="vendas.php" class="u-active-none u-border-2 u-border-active-black u-border-hover-black u-border-palette-1-base u-btn u-button-style u-hover-none u-none u-text-body-color u-text-hover-palette-1-base u-btn-2">ACESSAR VENDAS</a>
             </div>
           </div>
           <div class="u-align-center u-container-style u-grey-5 u-list-item u-radius-15 u-repeater-item u-shape-round u-list-item-3">
-            <div class="u-container-layout u-similar-container u-container-layout-3"><span class="u-file-icon u-icon u-icon-rounded u-palette-1-base u-radius-10 u-icon-3"><img src="images/1256650.png" alt=""></span>
+            <div class="u-container-layout u-similar-container u-container-layout-3"><span class="u-file-icon u-icon u-icon-rounded u-palette-1-base u-radius-10 u-icon-3"><img src="img/1256650.png" alt=""></span>
               <h5 class="u-custom-font u-font-raleway u-text u-text-5">CLIENTES</h5>
               <p class="u-text u-text-6">&gt; Lista de Clientes<br>&gt; Cadastrar clientes
               </p>
-              <a href="https://nicepage.cc" class="u-active-none u-border-2 u-border-active-black u-border-hover-black u-border-palette-1-base u-btn u-button-style u-hover-none u-none u-text-black u-text-hover-palette-1-base u-btn-3">acessar clientes</a>
+              <a href="clientes.php" class="u-active-none u-border-2 u-border-active-black u-border-hover-black u-border-palette-1-base u-btn u-button-style u-hover-none u-none u-text-black u-text-hover-palette-1-base u-btn-3">acessar clientes</a>
             </div>
           </div>
         </div>

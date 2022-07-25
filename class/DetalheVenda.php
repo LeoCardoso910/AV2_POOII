@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/../conexaobd/ConexaoBD.php';
+require_once __DIR__ . '/../config.php';
 
 class DetalheVenda{
     private $codVenda;
@@ -23,6 +25,8 @@ class DetalheVenda{
     public function getSubTotal(){
 
     }
-    public function getProductList($argCodVenda)
+    public function getProductList($argCodVenda){
+        
+    }
 
 }
