@@ -1,6 +1,13 @@
 <?php
-require_once __DIR__ . '/./class/Venda.php';
-$query = Venda::listar();
+require_once __DIR__ . '/./class/DetalheVenda.php';
+
+$codVenda = isset($_GET['codVenda']) ? $_GET['codVenda'] : null;
+$codCliente = isset($_GET['codCliente']) ? $_GET['codCliente'] : null;
+$dataVenda = isset($_GET['dataVenda']) ? $_GET['dataVenda'] : null;
+
+$detalhesVenda = DetalheVenda::getListaProduto($codVenda);
+$subTotal = DetalheVenda::getSubTotal($codVenda);
+
 ?>
 <!DOCTYPE html>
 <html style="font-size: 16px;" lang="pt">
@@ -92,67 +99,41 @@ $query = Venda::listar();
       <div class="u-expanded-width u-table u-table-responsive u-table-1">
         <table class="u-table-entity u-table-entity-1">
           <colgroup>
-            <col width="25%">
-            <col width="25%">
-            <col width="25%">
-            <col width="25%">
+            <col width="12.5%">
+            <col width="12.5%">
+            <col width="12.5%">
+            <col width="12.5%">
+            <col width="12.5%">
+            <col width="12.5%">
+            <col width="12.5%">
+            <col width="12.5%">
           </colgroup>
           <tbody class="u-table-alt-palette-1-light-3 u-table-body">
             <tr style="height: 65px;">
               <td class="u-align-center u-table-cell u-table-cell-1">CÓDIGO DA VENDA</td>
               <td class="u-align-center u-table-cell u-table-cell-2">CÓDIGO DO CLIENTE</td>
+              <td class="u-align-center u-table-cell u-table-cell-3">CÓDIGO DO PRODUTO</td>
+              <td class="u-align-center u-table-cell u-table-cell-3">QUANTIDADE DO PRODUTO</td>
+              <td class="u-align-center u-table-cell u-table-cell-3">DESCRIÇÃO DO PRODUTO</td>
+              <td class="u-align-center u-table-cell u-table-cell-3">VALOR UNITÁRIO DO PRODUTO</td>
+              <td class="u-align-center u-table-cell u-table-cell-3">SUBTOTAL DA VENDA</td>
               <td class="u-align-center u-table-cell u-table-cell-3">DATA DA VENDA</td>
               <td class="u-table-cell"></td>
             </tr>
-            <?php while($row = $query->fetch()){ ?>
+            <?php while($row = $detalhesVenda->fetch(PDO::FETCH_ASSOC)){ ?>
               <tr style="height: 65px;">
-                <td class="u-align-center u-table-cell"><?= $row['codVenda'] ?></td>
-                <td class="u-align-center u-table-cell"><?= $row['codCliente'] ?></td>
-                <td class="u-align-center u-table-cell"><?= $row['dataVenda'] ?></td>
-                <td class="u-align-center u-table-cell"><a style="font-weight: bold; color: indigo;" href="detalhevenda.php?codVenda=<?= $row['codVenda'] ?>&codCliente=<?= $row['codCliente'] ?>&dataVenda=<?= $row['dataVenda'] ?>">Detalhes</a></td>
+                <td class="u-align-center u-table-cell"><?= $codVenda ?></td>
+                <td class="u-align-center u-table-cell"><?= $codCliente ?></td>
+                <td class="u-align-center u-table-cell"><?= $row['codProduto'] ?></td>
+                <td class="u-align-center u-table-cell"><?= $row['qtdProduto'] ?></td>
+                <td class="u-align-center u-table-cell"><?= $row['descricao'] ?></td>
+                <td class="u-align-center u-table-cell">R$ <?= $row['valorUnitario'] ?></td>
+                <td class="u-align-center u-table-cell">R$ <?= $subTotal ?></td>
+                <td class="u-align-center u-table-cell"><?= $dataVenda ?></td>
               </tr>
             <?php } ?>
           </tbody>
         </table>
-      </div>
-    </div>
-  </section>
-  <section class="u-align-center u-clearfix u-gradient u-section-2" id="carousel_cfa9">
-    <div class="u-clearfix u-sheet u-sheet-1">
-      <h2 class="u-text u-text-default u-text-1"> CADASTRAR VENDAS</h2>
-      <div class="u-align-center u-container-style u-group u-radius-30 u-shape-round u-white u-group-1">
-        <div class="u-container-layout u-container-layout-1">
-          <div class="u-expanded-width u-form u-form-1">
-            <form action="#" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" source="email" name="form" style="padding: 0px;">
-              <div class="u-form-group u-form-name">
-                <label for="name-4c18" class="u-label">CÓDIGO DA VENDA</label>
-                <input type="text" id="name-4c18" name="codVenda" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="" autofocus="autofocus">
-              </div>
-              <div class="u-form-email u-form-group">
-                <label for="text-4c18" class="u-label">CÓDIGO DO CLIENTE</label>
-                <input type="text" placeholder="Digite o código do cliente" id="text-4c18" name="codCliente" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="">
-              </div>
-              <div class="u-form-group u-form-group-3">
-                <label for="text-f172" class="u-label">CÓDIGO DO PRODUTO</label>
-                <input type="text" placeholder="Digite o código do Produto" id="text-f172" name="codProduto" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
-              </div>
-              <div class="u-form-group u-form-group-4">
-                <label for="text-a35c" class="u-label">QUANTIDADE DO PRODUTO</label>
-                <input type="text" placeholder="Digite a quantidade de Produtos vendidos" id="text-a35c" name="qtdProduto" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
-              </div>
-              <div class="u-form-group u-form-group-5">
-                <label for="text-9d2d" class="u-label">DATA DA VENDA</label>
-                <input type="text" placeholder="DD/MM/AAAA" id="text-9d2d" name="dataVenda" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
-              </div>
-              <div class="u-align-right u-form-group u-form-submit">
-                <button type="submit" class="u-active-palette-4-light-1 u-border-5 u-border-active-palette-4-light-1 u-border-hover-palette-4-light-1 u-border-palette-4-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-4-light-1 u-palette-4-base u-radius-10 u-btn-1">CADASTRAR</button>
-              </div>
-              <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
-              <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
-              <input type="hidden" value="" name="recaptchaResponse">
-            </form>
-          </div>
-        </div>
       </div>
     </div>
   </section>

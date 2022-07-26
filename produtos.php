@@ -101,21 +101,21 @@
           </colgroup>
           <tbody class="u-table-alt-palette-1-light-3 u-table-body">
             <tr style="height: 65px;">
-              <td class="u-table-cell">CÓDIGO DO PRODUTO</td>
-              <td class="u-table-cell">DESCRIÇÃO</td>
-              <td class="u-table-cell">VALOR UNITÁRIO</td>
-              <td class="u-table-cell">UNIDADE</td>
-              <td class="u-table-cell">ESTOQUE MÍNIMO</td>
-              <td class="u-table-cell">QUANTIDADE NO ESTOQUE</td>
+              <td class="u-align-center u-table-cell">CÓDIGO DO PRODUTO</td>
+              <td class="u-align-center u-table-cell">DESCRIÇÃO</td>
+              <td class="u-align-center u-table-cell">VALOR UNITÁRIO</td>
+              <td class="u-align-center u-table-cell">UNIDADE</td>
+              <td class="u-align-center u-table-cell">ESTOQUE MÍNIMO</td>
+              <td class="u-align-center u-table-cell">QUANTIDADE NO ESTOQUE</td>
             </tr>
 			<?php while($row = $query->fetch()){ ?>
 				<tr style="height: 65px;">
-				<td class="u-table-cell"><?= $row['codProduto'] ?></td>
-				<td class="u-table-cell"><?= $row['descricao'] ?></td>
-				<td class="u-table-cell"><?= $row['valorUnitario'] ?></td>
-				<td class="u-table-cell"><?= $row['unidade'] ?></td>
-				<td class="u-table-cell"><?= $row['estoqueMinimo'] ?></td>
-				<td class="u-table-cell"><?= $row['qtdEstoque'] ?></td>
+          <td class="u-align-center u-table-cell"><?= $row['codProduto'] ?></td>
+          <td class="u-align-center u-table-cell"><?= $row['descricao'] ?></td>
+          <td class="u-align-center u-table-cell"><?= $row['valorUnitario'] ?></td>
+          <td class="u-align-center u-table-cell"><?= $row['unidade'] ?></td>
+          <td class="u-align-center u-table-cell"><?= $row['estoqueMinimo'] ?></td>
+          <td class="u-align-center u-table-cell"><?= $row['qtdEstoque'] ?></td>
 				</tr>
 			<?php } ?>
           </tbody>
@@ -155,7 +155,7 @@
                 <input type="text" placeholder="" id="text-eae9" name="qtdEstoque" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
               </div>
               <div class="u-align-right u-form-group u-form-submit">
-                <input type="submit" value="submit" class="u-form-control"/>
+              <button type="submit" class="u-active-palette-4-light-1 u-border-5 u-border-active-palette-4-light-1 u-border-hover-palette-4-light-1 u-border-palette-4-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-4-light-1 u-palette-4-base u-radius-10 u-btn-1">CADASTRAR</button>
               </div>
               <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
               <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>

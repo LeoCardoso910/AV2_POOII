@@ -1,3 +1,7 @@
+<?php
+require_once __DIR__ . '/./class/Cliente.php';
+$query = Cliente::listar();
+?>
 <!DOCTYPE html>
 <html style="font-size: 16px;" lang="pt">
 
@@ -88,54 +92,32 @@
       <div class="u-expanded-width u-table u-table-responsive u-table-1">
         <table class="u-table-entity u-table-entity-1">
           <colgroup>
-            <col width="13.6%">
-            <col width="14%">
-            <col width="26.2%">
-            <col width="21.8%">
-            <col width="10.2%">
-            <col width="14.2%">
+            <col width="16.6%">
+            <col width="16.6%">
+            <col width="16.6%">
+            <col width="16.6%">
+            <col width="16.6%">
+            <col width="16.6%">
           </colgroup>
           <tbody class="u-table-alt-palette-1-light-3 u-table-body">
             <tr style="height: 65px;">
-              <td class="u-table-cell">CÓDIGO DO CLIENTE</td>
-              <td class="u-table-cell">CPF</td>
-              <td class="u-table-cell">NOME</td>
-              <td class="u-table-cell">EMAIL</td>
-              <td class="u-table-cell">RENDA</td>
-              <td class="u-table-cell">CLASSE</td>
+              <td class="u-align-center u-table-cell">CÓDIGO DO CLIENTE</td>
+              <td class="u-align-center u-table-cell">CPF</td>
+              <td class="u-align-center u-table-cell">NOME</td>
+              <td class="u-align-center u-table-cell">EMAIL</td>
+              <td class="u-align-center u-table-cell">RENDA</td>
+              <td class="u-align-center u-table-cell">CLASSE</td>
             </tr>
-            <tr style="height: 65px;">
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-            </tr>
-            <tr style="height: 65px;">
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-            </tr>
-            <tr style="height: 65px;">
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-            </tr>
-            <tr style="height: 65px;">
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-            </tr>
+            <?php while($row = $query->fetch()){ ?>
+				<tr style="height: 65px;">
+					<td class="u-align-center u-table-cell"><?= $row['cod_cliente'] ?></td>
+					<td class="u-align-center u-table-cell"><?= $row['cpf'] ?></td>
+					<td class="u-align-center u-table-cell"><?= $row['nomeCliente'] ?></td>
+					<td class="u-align-center u-table-cell"><?= $row['email'] ?></td>
+					<td class="u-align-center u-table-cell">R$ <?= $row['renda'] ?></td>
+					<td class="u-align-center u-table-cell"><?= $row['classe'] ?></td>
+				</tr>
+            <?php } ?>
           </tbody>
         </table>
       </div>
@@ -147,14 +129,10 @@
       <div class="u-align-center u-container-style u-group u-radius-30 u-shape-round u-white u-group-1">
         <div class="u-container-layout u-container-layout-1">
           <div class="u-expanded-width u-form u-form-1">
-            <form action="#" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" source="email" name="form" style="padding: 0px;">
-              <div class="u-form-group u-form-name">
-                <label for="name-4c18" class="u-label">CÓDIGO DO CLIENTE</label>
-                <input type="text" placeholder="Digite o código do cliente" id="name-4c18" name="codCliente" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="">
-              </div>
+            <form action="clientes/cadastrarCliente.php" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" source="email" name="form" style="padding: 0px;">
               <div class="u-form-email u-form-group">
-                <label for="email-4c18" class="u-label">CPF</label>
-                <input type="email" placeholder="Digite o CPF do Cliente" id="email-4c18" name="cpf" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="">
+                <label for="text-4c18" class="u-label">CPF</label>
+                <input type="text" placeholder="Digite o CPF do Cliente" id="text-4c18" name="cpf" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="">
               </div>
               <div class="u-form-group u-form-group-3">
                 <label for="text-302c" class="u-label">NOME DO CLIENTE</label>
@@ -162,7 +140,7 @@
               </div>
               <div class="u-form-group u-form-group-4">
                 <label for="text-347b" class="u-label">EMAIL</label>
-                <input type="text" placeholder="Ex: joao@gmail.com" id="text-347b" name="email" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
+                <input type="email" placeholder="Ex: joao@gmail.com" id="text-347b" name="email" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
               </div>
               <div class="u-form-group u-form-group-5">
                 <label for="text-9312" class="u-label">RENDA</label>
@@ -173,8 +151,7 @@
                 <input type="text" placeholder="" id="text-eae9" name="classe" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
               </div>
               <div class="u-align-right u-form-group u-form-submit">
-                <a href="#" class="u-active-palette-4-light-1 u-border-5 u-border-active-palette-4-light-1 u-border-hover-palette-4-light-1 u-border-palette-4-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-4-light-1 u-palette-4-base u-radius-10 u-btn-1">CADASTRAR</a>
-                <input type="submit" value="submit" class="u-form-control-hidden">
+				<button type="submit" class="u-active-palette-4-light-1 u-border-5 u-border-active-palette-4-light-1 u-border-hover-palette-4-light-1 u-border-palette-4-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-4-light-1 u-palette-4-base u-radius-10 u-btn-1">CADASTRAR</button>
               </div>
               <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
               <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>

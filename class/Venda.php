@@ -11,6 +11,13 @@ class Venda {
         $this->dataVenda = $argDataVenda;
     }
 
+    public static function listar(){
+        $conexao = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
+        $sql = "SELECT * FROM venda";
+        $resultado = $conexao->query($sql);
+        return $resultado;
+    }
+
     public function existe($argCodVenda){
         $db = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
         $sql = "SELECT * FROM venda WHERE codVenda = $argCodVenda";

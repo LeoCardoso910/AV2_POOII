@@ -40,15 +40,15 @@ class DetalheVenda{
         $sql = "DELETE FROM detalhevenda WHERE codVenda = $this->codVenda AND codProduto = $this->codProduto";
         $conexao->execute($sql);
     }
-    public function getSubTotal(){
+    public static function getSubTotal($argCodVenda){
         $conexao = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
-        $sql = "SELECT (p.valorUnitario * dv.qtdProduto) as subTotal FROM detalhevenda dv inner join produto p on dv.codProduto = p.codProduto WHERE dv.codVenda = $this->codVenda";
+        $sql = "SELECT (p.valorUnitario * dv.qtdProduto) as subTotal FROM detalhevenda dv inner join produto p on dv.codProduto = p.codProduto WHERE dv.codVenda = $argCodVenda";
         return $conexao->query($sql)->fetchColumn();
     }
-    public function getListaProduto($argCodVenda){
+    public static function getListaProduto($argCodVenda){
         $conexao = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
         $sql = "SELECT p.codProduto, p.descricao, p.valorUnitario, dv.qtdProduto FROM detalhevenda dv inner join produto p on dv.codProduto = p.codProduto WHERE dv.codVenda = $argCodVenda";
-        return $conexao->query($sql)->fetch(PDO::FETCH_ASSOC);
+        return $conexao->query($sql);
     }
 
 }

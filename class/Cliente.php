@@ -16,6 +16,13 @@ class Cliente{
         $this->renda = $argRenda;
         $this->classe = $argClasse;
     }
+
+    public static function listar(){
+        $conexao = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
+        $sql = "SELECT * FROM cliente";
+        $resultado = $conexao->query($sql);
+        return $resultado;
+    }
     
     public function existe($argCodCliente){
         $db = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
@@ -29,22 +36,12 @@ class Cliente{
         
     }
 
-    public function incluir(){
+    public static function incluir($argCpf, $argNomeCliente, $argEmail, $argRenda, $argClasse){
         $db = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
-        $sql = "INSERT INTO cliente (cpf, nomeCliente, email, renda, classe) VALUES ('$this->cpf', '$this->nomeCliente', '$this->email', '$this->renda', '$this->classe')";
+        $sql = "INSERT INTO cliente (cpf, nomeCliente, email, renda, classe) VALUES ('$argCpf', '$argNomeCliente', '$argEmail', '$argRenda', '$argClasse')";
         $db->execute($sql);
     }
 
-    public function alterar($codCliente){
-        $db = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
-        $sql = "UPDATE cliente SET cpf = '$this->cpf', nomeCliente = '$this->nomeCliente', email = '$this->email', renda = '$this->renda', classe = '$this->classe' WHERE cod_cliente = $codCliente";
-        $db->execute($sql);
-    }
-
-    public function salvar($codCliente){
-        $existe = $this->existe($codCliente);
-        $existe == true ? $this->alterar($codCliente) : $this->incluir();
-    }
 
     public function excluir($codCliente){
         $db = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
