@@ -4,19 +4,26 @@ require_once __DIR__ . '/../config.php';
 
 class Produto {
     private $codProduto;
-    private $unidade;
     private $descricao;
     private $valorUnitario;
+    private $unidade;
     private $estoqueMinimo;
     private $qtdEstoque;
 
-    function __construct($argCodProduto = null, $argUnidade, $argDescricao, $argValorUnitario, $argEstoqueMinimo, $argQtdEstoque) {
+    function __construct($argCodProduto, $argDescricao, $argValorUnitario, $argUnidade, $argEstoqueMinimo, $argQtdEstoque) {
         $this->codProduto = $argCodProduto;
-        $this->unidade = $argUnidade;
         $this->descricao = $argDescricao;
         $this->valorUnitario = $argValorUnitario;
+        $this->unidade = $argUnidade;
         $this->estoqueMinimo = $argEstoqueMinimo;
         $this->qtdEstoque = $argQtdEstoque;
+    }
+
+    public static function listar(){
+        $conexao = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
+        $sql = "SELECT * FROM produto";
+        $resultado = $conexao->query($sql);
+        return $resultado;
     }
 
     public function existe($argCodProduto){
@@ -33,19 +40,19 @@ class Produto {
 
     public function incluir(){
         $db = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
-        $sql = "INSERT INTO produto (codProduto, unidade, descricao, valorUnitario, estoqueMinimo, qtdEstoque) VALUES ('$this->codProduto','$this->unidade', '$this->descricao', '$this->valorUnitario', '$this->estoqueMinimo', '$this->qtdEstoque')";
+        $sql = "INSERT INTO produto (codProduto, descricao, valorUnitario, unidade, estoqueMinimo, qtdEstoque) VALUES ('$this->codProduto', '$this->descricao', '$this->valorUnitario', '$this->unidade', '$this->estoqueMinimo', '$this->qtdEstoque')";
         $db->execute($sql);
     }
 
     public function alterar($argCodProduto){
         $db = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
-        $sql = "UPDATE produto SET codProduto = '$this->codProduto', unidade = '$this->unidade', descricao = '$this->descricao', valorUnitario = '$this->valorUnitario', estoqueMinimo = '$this->estoqueMinimo', qtdEstoque = '$this->qtdEstoque' WHERE codProduto = $argCodProduto";
+        $sql = "UPDATE produto SET codProduto = '$this->codProduto', descricao = '$this->descricao', valorUnitario = '$this->valorUnitario', unidade = '$this->unidade',  estoqueMinimo = '$this->estoqueMinimo', qtdEstoque = '$this->qtdEstoque' WHERE codProduto = $argCodProduto";
         $db->execute($sql);
     }
 
-    public function salvar($codProduto){
+    public function salvar($codProduto = null){
         $existe = $this->existe($this->codProduto);
-        $existe == true ? $this->alterar($codProduto) : $this->incluir();
+        $existe == true ? (($codProduto) == null ? $this->alterar($this->codProduto) : $this->alterar($codProduto)) : $this->incluir();
     }
 
     public function excluir($argCodProduto){

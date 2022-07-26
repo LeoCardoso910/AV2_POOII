@@ -1,3 +1,7 @@
+<?php
+	require_once __DIR__ . '/./class/Produto.php';
+	$query = Produto::listar();
+?>
 <!DOCTYPE html>
 <html style="font-size: 16px;" lang="pt">
 
@@ -104,38 +108,16 @@
               <td class="u-table-cell">ESTOQUE MÍNIMO</td>
               <td class="u-table-cell">QUANTIDADE NO ESTOQUE</td>
             </tr>
-            <tr style="height: 65px;">
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-            </tr>
-            <tr style="height: 65px;">
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-            </tr>
-            <tr style="height: 65px;">
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-            </tr>
-            <tr style="height: 65px;">
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-            </tr>
+			<?php while($row = $query->fetch()){ ?>
+				<tr style="height: 65px;">
+				<td class="u-table-cell"><?= $row['codProduto'] ?></td>
+				<td class="u-table-cell"><?= $row['descricao'] ?></td>
+				<td class="u-table-cell"><?= $row['valorUnitario'] ?></td>
+				<td class="u-table-cell"><?= $row['unidade'] ?></td>
+				<td class="u-table-cell"><?= $row['estoqueMinimo'] ?></td>
+				<td class="u-table-cell"><?= $row['qtdEstoque'] ?></td>
+				</tr>
+			<?php } ?>
           </tbody>
         </table>
       </div>
@@ -147,14 +129,14 @@
       <div class="u-align-center u-container-style u-group u-radius-30 u-shape-round u-white u-group-1">
         <div class="u-container-layout u-container-layout-1">
           <div class="u-expanded-width u-form u-form-1">
-            <form action="#" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" source="email" name="form" style="padding: 0px;">
+            <form action="produtos/cadastrarProduto.php" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" source="email" name="form" style="padding: 0px;">
               <div class="u-form-group u-form-name">
                 <label for="name-4c18" class="u-label">CÓDIGO DO PRODUTO</label>
                 <input type="text" placeholder="Digite o código do Produto" id="name-4c18" name="codProduto" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="">
               </div>
               <div class="u-form-email u-form-group">
-                <label for="email-4c18" class="u-label">DESCRIÇÃO</label>
-                <input type="email" placeholder="DESCRIÇÃO DO PRODUTO" id="email-4c18" name="descricao" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="">
+                <label for="text-4c18" class="u-label">DESCRIÇÃO</label>
+                <input type="text" placeholder="DESCRIÇÃO DO PRODUTO" id="text-4c18" name="descricao" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="">
               </div>
               <div class="u-form-group u-form-group-3">
                 <label for="text-302c" class="u-label">VALOR UNITÁRIO</label>
@@ -173,8 +155,7 @@
                 <input type="text" placeholder="" id="text-eae9" name="qtdEstoque" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
               </div>
               <div class="u-align-right u-form-group u-form-submit">
-                <a href="#" class="u-active-palette-4-light-1 u-border-5 u-border-active-palette-4-light-1 u-border-hover-palette-4-light-1 u-border-palette-4-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-4-light-1 u-palette-4-base u-radius-10 u-btn-1">CADASTRAR</a>
-                <input type="submit" value="submit" class="u-form-control-hidden">
+                <input type="submit" value="submit" class="u-form-control"/>
               </div>
               <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
               <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>

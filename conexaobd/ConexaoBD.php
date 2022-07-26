@@ -25,8 +25,9 @@ class ConexaoBD
     {
         return $this->BancoLink->exec($sql);
     }
-    public function query()
+    public function query($sql)
     {
+        return $this->BancoLink->query($sql);
     }
     public function logicoSql()
     {
