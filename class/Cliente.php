@@ -55,18 +55,16 @@ class Cliente{
         return $result;
     }
 
-    public function calculaClasse(){
-        if($this->renda <= 2000){
-            $this->classe = "Baixa";
-        }elseif($this->renda <= 4000 && $this->renda > 2000){
-            $this->classe = "Média";
-        }elseif($this->renda <= 6000 && $this->renda > 4000){
-            $this->classe = "Alta";
-        }else{
-            $this->classe = "Muito Alta";
+    public static function calculaClasse($argRenda){
+        if($argRenda <= 2000){
+            $classe = "Baixa";
+        }else if($argRenda <= 4000 && $argRenda > 2000){
+            $classe = "Média";
+        }else if($argRenda > 4000){
+            $classe = "Alta";
         }
 
-        return $this->classe;
+        return $classe;
     }
 
 }

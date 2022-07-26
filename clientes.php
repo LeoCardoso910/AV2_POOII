@@ -114,7 +114,7 @@ $query = Cliente::listar();
 					<td class="u-align-center u-table-cell"><?= $row['cpf'] ?></td>
 					<td class="u-align-center u-table-cell"><?= $row['nomeCliente'] ?></td>
 					<td class="u-align-center u-table-cell"><?= $row['email'] ?></td>
-					<td class="u-align-center u-table-cell">R$ <?= $row['renda'] ?></td>
+					<td class="u-align-center u-table-cell">R$ <?= str_replace('.', ',', $row['renda']) ?></td>
 					<td class="u-align-center u-table-cell"><?= $row['classe'] ?></td>
 				</tr>
             <?php } ?>
@@ -144,14 +144,10 @@ $query = Cliente::listar();
               </div>
               <div class="u-form-group u-form-group-5">
                 <label for="text-9312" class="u-label">RENDA</label>
-                <input type="text" id="text-9312" name="renda" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
-              </div>
-              <div class="u-form-group u-form-group-6">
-                <label for="text-eae9" class="u-label">CLASSE</label>
-                <input type="text" placeholder="" id="text-eae9" name="classe" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
+                <input type="text" id="text-9312" placeholder="Ex: R$ 1000,00" name="renda" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
               </div>
               <div class="u-align-right u-form-group u-form-submit">
-				<button type="submit" class="u-active-palette-4-light-1 u-border-5 u-border-active-palette-4-light-1 u-border-hover-palette-4-light-1 u-border-palette-4-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-4-light-1 u-palette-4-base u-radius-10 u-btn-1">CADASTRAR</button>
+				        <button type="submit" class="u-active-palette-4-light-1 u-border-5 u-border-active-palette-4-light-1 u-border-hover-palette-4-light-1 u-border-palette-4-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-4-light-1 u-palette-4-base u-radius-10 u-btn-1">CADASTRAR</button>
               </div>
               <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
               <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
