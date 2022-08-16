@@ -1,19 +1,23 @@
+<?php
+	require_once __DIR__ . '/../class/Produto.php';
+	$produto = Produto::listarPorId(isset($_GET['codProduto']) ? $_GET['codProduto'] : 0);
+?>
 <!DOCTYPE html>
 <html style="font-size: 16px;" lang="pt">
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
-  <meta name="keywords" content="LOJA PHP">
+  <meta name="keywords" content="CADASTRAR CLIENTE, LOJA PHP">
   <meta name="description" content="">
-  <title>LOJA PHP</title>
-  <link rel="stylesheet" href="css/nicepage.css" media="screen">
-  <link rel="stylesheet" href="css/LOJA-PHP.css" media="screen">
+  <title><?= $produto['descricao'] ?></title>
+  <link rel="stylesheet" href="../css/nicepage.css" media="screen">
+  <link rel="stylesheet" href="../css/PRODUTOS.css" media="screen">
   <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
   <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
-
+  <meta name="generator" content="Nicepage 4.14.1, nicepage.com">
   <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
-  <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
+
 
 
   <script type="application/ld+json">
@@ -25,15 +29,15 @@
     }
   </script>
   <meta name="theme-color" content="#478ac9">
-  <meta property="og:title" content="LOJA PHP">
+  <meta property="og:title" content="PRODUTOS">
   <meta property="og:type" content="website">
 </head>
 
 <body class="u-body u-xl-mode" data-lang="pt">
   <header class="u-clearfix u-header u-palette-1-light-2 u-header" id="sec-9fa5">
     <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-      <a href="" class="u-image u-logo u-image-1" data-image-width="1280" data-image-height="1262">
-        <img src="img/f69aed53dbb5bcd6f5cc6d7a9c8dda957767ea33ca1c67ac86ad20100f2d5b9e8a075b298c3e3dfac3accdc9edd9c5b19148fad85eb84492668394_1280.png" class="u-logo-image u-logo-image-1">
+      <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="1280" data-image-height="1262">
+        <img src="../img/f69aed53dbb5bcd6f5cc6d7a9c8dda957767ea33ca1c67ac86ad20100f2d5b9e8a075b298c3e3dfac3accdc9edd9c5b19148fad85eb84492668394_1280.png" class="u-logo-image u-logo-image-1">
       </a>
       <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1">
         <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
@@ -83,39 +87,20 @@
       </nav>
     </div>
   </header>
-  <section class="u-align-left u-clearfix u-image u-section-1" id="carousel_fc6f" data-image-width="1920" data-image-height="960">
-    <div class="u-clearfix u-sheet u-sheet-1">
-      <div class="u-expanded-width u-list u-list-1">
-        <div class="u-repeater u-repeater-1">
-          <div class="u-align-center u-container-style u-grey-5 u-list-item u-radius-15 u-repeater-item u-shape-round u-list-item-1">
-            <div class="u-container-layout u-similar-container u-container-layout-1"><span class="u-file-icon u-icon u-icon-rounded u-palette-1-base u-radius-10 u-icon-1"><img src="img/3703259.png" alt=""></span>
-              <h5 class="u-custom-font u-font-raleway u-text u-text-1">PRODUTOS</h5>
-              <p class="u-text u-text-2">&gt; Lista ​​de produtos disponíveis<br>&gt; Cadastrar Produtos
-              </p>
-              <a href="pages/produtos.php" class="u-active-none u-border-2 u-border-active-black u-border-hover-black u-border-palette-1-base u-btn u-button-style u-hover-none u-none u-text-body-color u-text-hover-palette-1-base u-btn-1">acessar produtos</a>
-            </div>
-          </div>
-          <div class="u-align-center u-container-style u-grey-5 u-list-item u-radius-15 u-repeater-item u-shape-round u-list-item-2">
-            <div class="u-container-layout u-similar-container u-container-layout-2"><span class="u-file-icon u-icon u-icon-rounded u-palette-1-base u-radius-10 u-icon-2"><img src="img/679847.png" alt=""></span>
-              <h5 class="u-custom-font u-font-raleway u-text u-text-3">VENDAS</h5>
-              <p class="u-text u-text-4">&gt; Lista de vendas<br>&gt; Detalhamento de vendas<br>&gt; Cadastrar vendas
-              </p>
-              <a href="pages/vendas.php" class="u-active-none u-border-2 u-border-active-black u-border-hover-black u-border-palette-1-base u-btn u-button-style u-hover-none u-none u-text-body-color u-text-hover-palette-1-base u-btn-2">ACESSAR VENDAS</a>
-            </div>
-          </div>
-          <div class="u-align-center u-container-style u-grey-5 u-list-item u-radius-15 u-repeater-item u-shape-round u-list-item-3">
-            <div class="u-container-layout u-similar-container u-container-layout-3"><span class="u-file-icon u-icon u-icon-rounded u-palette-1-base u-radius-10 u-icon-3"><img src="img/1256650.png" alt=""></span>
-              <h5 class="u-custom-font u-font-raleway u-text u-text-5">CLIENTES</h5>
-              <p class="u-text u-text-6">&gt; Lista de Clientes<br>&gt; Cadastrar clientes
-              </p>
-              <a href="pages/clientes.php" class="u-active-none u-border-2 u-border-active-black u-border-hover-black u-border-palette-1-base u-btn u-button-style u-hover-none u-none u-text-black u-text-hover-palette-1-base u-btn-3">acessar clientes</a>
-            </div>
-          </div>
-        </div>
+  <section class="u-align-center u-clearfix u-gradient u-section-1" id="sec-c648">
+    <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+      <div class="u-expanded-width u-table u-table-responsive u-table-1">
+            <h4><?= $produto['descricao'] ?></h4>
+            <img width="300px" height="300px" src="<?= $produto['imagem'] ?>" alt="">
+            <h5>R$ <?= $produto['valorUnitario'] ?></h5>
+            <form action="../interfaces/carrinho/adicionarAoCarrinho.php" method="POST">
+              <input type="hidden" value="<?= $produto['codProduto'] ?>" name="codProduto" id="codProduto">
+              <input type="number" value="1" min="1" max="<?= $produto['qtdEstoque'] ?>" name="qtde" id="qtde" placeholder="Quantidade" required></input>
+              <input type="submit" value="Adcionar ao carrinho">
+            </form>
       </div>
     </div>
   </section>
-
 
   <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-b990">
     <div class="u-clearfix u-sheet u-sheet-1">
@@ -123,7 +108,6 @@
       <p class="u-small-text u-text u-text-variant u-text-2">CREATED BY LÉO, ANA, PEDRO E JOÃO&nbsp;</p>
     </div>
   </footer>
-
 </body>
 
 </html>

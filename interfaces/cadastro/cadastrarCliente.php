@@ -1,5 +1,5 @@
 <?php
-	require_once __DIR__ . '/../class/Cliente.php';
+	require_once __DIR__ . '/../../class/Cliente.php';
 
     $cpf = isset($_POST['cpf']) ? $_POST['cpf'] : null;
     $nomeCliente = isset($_POST['nomeCliente']) ? $_POST['nomeCliente'] : null;
@@ -9,6 +9,6 @@
 
     Cliente::incluir($cpf, $nomeCliente, $email, $renda, $classe);
 
-    header('Location: ../clientes.php');
+    header('Location: ../../pages/clientes.php');
     
 ?>

@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/./class/Venda.php';
-$query = Venda::listar();
+	require_once __DIR__ . '/../class/Produto.php';
+	$query = Produto::listar();
 ?>
 <!DOCTYPE html>
 <html style="font-size: 16px;" lang="pt">
@@ -8,11 +8,11 @@ $query = Venda::listar();
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
-  <meta name="keywords" content="​CADASTRAR VENDAS, LOJA PHP">
+  <meta name="keywords" content="CADASTRAR CLIENTE, LOJA PHP">
   <meta name="description" content="">
-  <title>VENDAS</title>
-  <link rel="stylesheet" href="css/nicepage.css" media="screen">
-  <link rel="stylesheet" href="css/VENDAS.css" media="screen">
+  <title>PRODUTOS</title>
+  <link rel="stylesheet" href="../css/nicepage.css" media="screen">
+  <link rel="stylesheet" href="../css/PRODUTOS.css" media="screen">
   <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
   <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
   <meta name="generator" content="Nicepage 4.14.1, nicepage.com">
@@ -29,7 +29,7 @@ $query = Venda::listar();
     }
   </script>
   <meta name="theme-color" content="#478ac9">
-  <meta property="og:title" content="VENDAS">
+  <meta property="og:title" content="PRODUTOS">
   <meta property="og:type" content="website">
 </head>
 
@@ -37,7 +37,7 @@ $query = Venda::listar();
   <header class="u-clearfix u-header u-palette-1-light-2 u-header" id="sec-9fa5">
     <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
       <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="1280" data-image-height="1262">
-        <img src="img/f69aed53dbb5bcd6f5cc6d7a9c8dda957767ea33ca1c67ac86ad20100f2d5b9e8a075b298c3e3dfac3accdc9edd9c5b19148fad85eb84492668394_1280.png" class="u-logo-image u-logo-image-1">
+        <img src="../img/f69aed53dbb5bcd6f5cc6d7a9c8dda957767ea33ca1c67ac86ad20100f2d5b9e8a075b298c3e3dfac3accdc9edd9c5b19148fad85eb84492668394_1280.png" class="u-logo-image u-logo-image-1">
       </a>
       <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1">
         <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
@@ -87,65 +87,75 @@ $query = Venda::listar();
       </nav>
     </div>
   </header>
-  <section class="u-align-center u-clearfix u-gradient u-section-1" id="sec-974e">
-    <div class="u-clearfix u-sheet u-sheet-1">
+  <section class="u-align-center u-clearfix u-gradient u-section-1" id="sec-c648">
+    <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
       <div class="u-expanded-width u-table u-table-responsive u-table-1">
         <table class="u-table-entity u-table-entity-1">
           <colgroup>
-            <col width="25%">
-            <col width="25%">
-            <col width="25%">
-            <col width="25%">
+            <col width="14%">
+            <col width="37%">
+            <col width="14%">
+            <col width="10.6%">
+            <col width="10.2%">
+            <col width="14.2%">
           </colgroup>
           <tbody class="u-table-alt-palette-1-light-3 u-table-body">
             <tr style="height: 65px;">
-              <td class="u-align-center u-table-cell u-table-cell-1">CÓDIGO DA VENDA</td>
-              <td class="u-align-center u-table-cell u-table-cell-2">CÓDIGO DO CLIENTE</td>
-              <td class="u-align-center u-table-cell u-table-cell-3">DATA DA VENDA</td>
-              <td class="u-table-cell"></td>
+              <td class="u-align-center u-table-cell">CÓDIGO DO PRODUTO</td>
+              <td class="u-align-center u-table-cell">DESCRIÇÃO</td>
+              <td class="u-align-center u-table-cell">VALOR UNITÁRIO</td>
+              <td class="u-align-center u-table-cell">UNIDADE</td>
+              <td class="u-align-center u-table-cell">ESTOQUE MÍNIMO</td>
+              <td class="u-align-center u-table-cell">QUANTIDADE NO ESTOQUE</td>
             </tr>
-            <?php while($row = $query->fetch()){ ?>
-              <tr style="height: 65px;">
-                <td class="u-align-center u-table-cell"><?= $row['codVenda'] ?></td>
-                <td class="u-align-center u-table-cell"><?= $row['codCliente'] ?></td>
-                <td class="u-align-center u-table-cell"><?= $row['dataVenda'] ?></td>
-                <td class="u-align-center u-table-cell"><a style="font-weight: bold; color: indigo;" href="detalhevenda.php?codVenda=<?= $row['codVenda'] ?>&codCliente=<?= $row['codCliente'] ?>&dataVenda=<?= $row['dataVenda'] ?>">Detalhes</a></td>
-              </tr>
-            <?php } ?>
+			<?php while($row = $query->fetch()){ ?>
+				<tr style="height: 65px;">
+          <td class="u-align-center u-table-cell"><?= $row['codProduto'] ?></td>
+          <td class="u-align-center u-table-cell"><?= $row['descricao'] ?></td>
+          <td class="u-align-center u-table-cell"><?= $row['valorUnitario'] ?></td>
+          <td class="u-align-center u-table-cell"><?= $row['unidade'] ?></td>
+          <td class="u-align-center u-table-cell"><?= $row['estoqueMinimo'] ?></td>
+          <td class="u-align-center u-table-cell"><?= $row['qtdEstoque'] ?></td>
+				</tr>
+			<?php } ?>
           </tbody>
         </table>
       </div>
     </div>
   </section>
-  <section class="u-align-center u-clearfix u-gradient u-section-2" id="carousel_cfa9">
+  <section class="u-align-center u-clearfix u-gradient u-section-2" id="carousel_ae01">
     <div class="u-clearfix u-sheet u-sheet-1">
-      <h2 class="u-text u-text-default u-text-1"> CADASTRAR VENDAS</h2>
+      <h2 class="u-text u-text-default u-text-1">CADASTRAR PRODUTO</h2>
       <div class="u-align-center u-container-style u-group u-radius-30 u-shape-round u-white u-group-1">
         <div class="u-container-layout u-container-layout-1">
           <div class="u-expanded-width u-form u-form-1">
-            <form action="#" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" source="email" name="form" style="padding: 0px;">
+            <form action="../interfaces/cadastro/cadastrarProduto.php" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" source="email" name="form" style="padding: 0px;">
               <div class="u-form-group u-form-name">
-                <label for="name-4c18" class="u-label">CÓDIGO DA VENDA</label>
-                <input type="text" id="name-4c18" name="codVenda" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="" autofocus="autofocus">
+                <label for="name-4c18" class="u-label">CÓDIGO DO PRODUTO</label>
+                <input type="text" placeholder="Digite o código do Produto" id="name-4c18" name="codProduto" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="">
               </div>
               <div class="u-form-email u-form-group">
-                <label for="text-4c18" class="u-label">CÓDIGO DO CLIENTE</label>
-                <input type="text" placeholder="Digite o código do cliente" id="text-4c18" name="codCliente" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="">
+                <label for="text-4c18" class="u-label">DESCRIÇÃO</label>
+                <input type="text" placeholder="DESCRIÇÃO DO PRODUTO" id="text-4c18" name="descricao" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="">
               </div>
               <div class="u-form-group u-form-group-3">
-                <label for="text-f172" class="u-label">CÓDIGO DO PRODUTO</label>
-                <input type="text" placeholder="Digite o código do Produto" id="text-f172" name="codProduto" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
+                <label for="text-302c" class="u-label">VALOR UNITÁRIO</label>
+                <input type="text" placeholder="Digite o valor unitário do Produto" id="text-302c" name="valorUnitario" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
               </div>
               <div class="u-form-group u-form-group-4">
-                <label for="text-a35c" class="u-label">QUANTIDADE DO PRODUTO</label>
-                <input type="text" placeholder="Digite a quantidade de Produtos vendidos" id="text-a35c" name="qtdProduto" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
+                <label for="text-347b" class="u-label">UNIDADES</label>
+                <input type="text" id="text-347b" name="unidade" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
               </div>
               <div class="u-form-group u-form-group-5">
-                <label for="text-9d2d" class="u-label">DATA DA VENDA</label>
-                <input type="text" placeholder="DD/MM/AAAA" id="text-9d2d" name="dataVenda" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
+                <label for="text-9312" class="u-label">ESTOQUE MÍNIMO</label>
+                <input type="text" id="text-9312" name="estoqueMinimo" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
+              </div>
+              <div class="u-form-group u-form-group-6">
+                <label for="text-eae9" class="u-label">QUANTIDADE NO ESTOQUE</label>
+                <input type="text" placeholder="" id="text-eae9" name="qtdEstoque" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
               </div>
               <div class="u-align-right u-form-group u-form-submit">
-                <button type="submit" class="u-active-palette-4-light-1 u-border-5 u-border-active-palette-4-light-1 u-border-hover-palette-4-light-1 u-border-palette-4-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-4-light-1 u-palette-4-base u-radius-10 u-btn-1">CADASTRAR</button>
+              <button type="submit" class="u-active-palette-4-light-1 u-border-5 u-border-active-palette-4-light-1 u-border-hover-palette-4-light-1 u-border-palette-4-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-4-light-1 u-palette-4-base u-radius-10 u-btn-1">CADASTRAR</button>
               </div>
               <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
               <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
@@ -164,7 +174,6 @@ $query = Venda::listar();
       <p class="u-small-text u-text u-text-variant u-text-2">CREATED BY LÉO, ANA, PEDRO E JOÃO&nbsp;</p>
     </div>
   </footer>
-
 </body>
 
 </html>

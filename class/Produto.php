@@ -26,6 +26,20 @@ class Produto {
         return $resultado;
     }
 
+    public static function listarPorId($codProduto){
+        $conexao = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
+        $sql = "SELECT * FROM produto WHERE codProduto = $codProduto";
+        $resultado = $conexao->query($sql)->fetch();
+        return $resultado;
+    }
+
+    public static function getQuantidadeEstoque($argCodProduto){
+        $conexao = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
+        $sql = "SELECT qtdEstoque FROM produto WHERE codProduto = $argCodProduto";
+        $resultado = $conexao->query($sql)->fetch()['qtdEstoque'];
+        return $resultado;
+    }
+
     public function existe($argCodProduto){
         $db = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
         $sql = "SELECT * FROM produto WHERE codProduto = $argCodProduto";

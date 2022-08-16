@@ -1,5 +1,5 @@
 <?php
-	require_once __DIR__ . '/../class/Produto.php';
+	require_once __DIR__ . '/../../class/Produto.php';
 
 	$codProduto = isset($_POST['codProduto']) ? $_POST['codProduto'] : null;
     $descricao = isset($_POST['descricao']) ? $_POST['descricao'] : null;
@@ -11,5 +11,5 @@
     $p = new Produto($codProduto, $descricao, $valorUnitario, $unidade, $estoqueMinimo, $qtdEstoque);
     $p->salvar();
 
-    header('Location: ../produtos.php');
+    header('Location: ../../pages/produtos.php');
 ?>

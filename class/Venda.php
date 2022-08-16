@@ -12,9 +12,9 @@ class Venda {
     }
 
     public static function listar(){
-        $conexao = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
+        $db = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
         $sql = "SELECT * FROM venda";
-        $resultado = $conexao->query($sql);
+        $resultado = $db->query($sql);
         return $resultado;
     }
 
@@ -29,10 +29,17 @@ class Venda {
         return false;
     }
 
-    public function incluir(){
+    public static function incluir($codCliente, $dataVenda){
         $db = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
-        $sql = "INSERT INTO venda (codCliente, dataVenda) VALUES ('$this->codCliente', '$this->dataVenda')";
+        $sql = "INSERT INTO venda (codCliente, dataVenda) VALUES ('$codCliente', '$dataVenda')";
         $db->execute($sql);
+    }
+
+    public static function ultimaVenda(){
+        $db = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
+        $sql = "SELECT MAX(codVenda) FROM venda";
+        $result = $db->query($sql)->fetch();
+        return $result;
     }
 
     public function alterar($argCodVenda){
@@ -43,7 +50,7 @@ class Venda {
 
     public function salvar($argCodVenda){
         $existe = $this->existe($argCodVenda);
-        $existe == true ? $this->alterar($argCodVenda) : $this->incluir();
+        $existe == true ? $this->alterar($argCodVenda) : $this->incluir($this->codCliente, $this->dataVenda);
     }
 
     public function excluir($argCodVenda){
