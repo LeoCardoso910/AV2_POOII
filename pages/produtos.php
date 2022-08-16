@@ -1,6 +1,10 @@
 <?php
-	require_once __DIR__ . '/../class/Produto.php';
-	$query = Produto::listar();
+require_once __DIR__ . '/../class/Produto.php';
+$query = Produto::listar();
+
+session_start();
+$units = serialize(array("KG" => "Quilograma", "LT" => "Litro", "UN" => "Unidade", "MT" => "Metro"));
+$_SESSION['units'] = $units;
 ?>
 <!DOCTYPE html>
 <html style="font-size: 16px;" lang="pt">
@@ -13,6 +17,8 @@
   <title>PRODUTOS</title>
   <link rel="stylesheet" href="../css/nicepage.css" media="screen">
   <link rel="stylesheet" href="../css/PRODUTOS.css" media="screen">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
   <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
   <meta name="generator" content="Nicepage 4.14.1, nicepage.com">
@@ -88,16 +94,18 @@
     </div>
   </header>
   <section class="u-align-center u-clearfix u-gradient u-section-1" id="sec-c648">
-    <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+    <div class="u-clearfix u-sheet u-sheet-1">
       <div class="u-expanded-width u-table u-table-responsive u-table-1">
         <table class="u-table-entity u-table-entity-1">
           <colgroup>
-            <col width="14%">
-            <col width="37%">
-            <col width="14%">
-            <col width="10.6%">
-            <col width="10.2%">
-            <col width="14.2%">
+            <col width="12.5%">
+            <col width="12.5%">
+            <col width="12.5%">
+            <col width="12.5%">
+            <col width="12.5%">
+            <col width="12.5%">
+            <col width="12.5%">
+            <col width="12.5%">
           </colgroup>
           <tbody class="u-table-alt-palette-1-light-3 u-table-body">
             <tr style="height: 65px;">
@@ -107,17 +115,29 @@
               <td class="u-align-center u-table-cell">UNIDADE</td>
               <td class="u-align-center u-table-cell">ESTOQUE MÍNIMO</td>
               <td class="u-align-center u-table-cell">QUANTIDADE NO ESTOQUE</td>
+              <td class="u-align-center u-table-cell">ALTERAR</td>
+              <td class="u-align-center u-table-cell">EXCLUIR</td>
             </tr>
-			<?php while($row = $query->fetch()){ ?>
-				<tr style="height: 65px;">
-          <td class="u-align-center u-table-cell"><?= $row['codProduto'] ?></td>
-          <td class="u-align-center u-table-cell"><?= $row['descricao'] ?></td>
-          <td class="u-align-center u-table-cell"><?= $row['valorUnitario'] ?></td>
-          <td class="u-align-center u-table-cell"><?= $row['unidade'] ?></td>
-          <td class="u-align-center u-table-cell"><?= $row['estoqueMinimo'] ?></td>
-          <td class="u-align-center u-table-cell"><?= $row['qtdEstoque'] ?></td>
-				</tr>
-			<?php } ?>
+            <?php while ($row = $query->fetch()) { ?>
+              <tr style="height: 65px;">
+                <td class="u-align-center u-table-cell"><?= $row['codProduto'] ?></td>
+                <td class="u-align-center u-table-cell"><?= $row['descricao'] ?></td>
+                <td class="u-align-center u-table-cell"><?= $row['valorUnitario'] ?></td>
+                <td class="u-align-center u-table-cell"><?= $row['unidade'] ?></td>
+                <td class="u-align-center u-table-cell"><?= $row['estoqueMinimo'] ?></td>
+                <td class="u-align-center u-table-cell"><?= $row['qtdEstoque'] ?></td>
+                <td class="u-align-center u-table-cell">
+                  <a href="formAtualizarProduto.php?codProduto=<?= $row['codProduto'] ?>&descricao=<?= $row['descricao'] ?>&valorUnitario=<?= $row['valorUnitario'] ?>&unidade=<?= $row['unidade'] ?>&estoqueMinimo=<?= $row['estoqueMinimo'] ?>&qtdEstoque=<?= $row['qtdEstoque'] ?>">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </a>
+                </td>
+                <td class="u-align-center u-table-cell">
+                  <a onclick=" return confirm('Tem certeza que deseja excluir esse registro?')" href="../interfaces/exclusao/excluirProduto.php?codProduto=<?= $row['codProduto'] ?>">
+                    <i class="fa-solid fa-trash-can"></i>
+                  </a>
+                </td>
+              </tr>
+            <?php } ?>
           </tbody>
         </table>
       </div>
@@ -130,32 +150,33 @@
         <div class="u-container-layout u-container-layout-1">
           <div class="u-expanded-width u-form u-form-1">
             <form action="../interfaces/cadastro/cadastrarProduto.php" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" source="email" name="form" style="padding: 0px;">
-              <div class="u-form-group u-form-name">
-                <label for="name-4c18" class="u-label">CÓDIGO DO PRODUTO</label>
-                <input type="text" placeholder="Digite o código do Produto" id="name-4c18" name="codProduto" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="">
-              </div>
               <div class="u-form-email u-form-group">
                 <label for="text-4c18" class="u-label">DESCRIÇÃO</label>
                 <input type="text" placeholder="DESCRIÇÃO DO PRODUTO" id="text-4c18" name="descricao" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="">
               </div>
               <div class="u-form-group u-form-group-3">
                 <label for="text-302c" class="u-label">VALOR UNITÁRIO</label>
-                <input type="text" placeholder="Digite o valor unitário do Produto" id="text-302c" name="valorUnitario" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
+                <input type="text" pattern="^[1-9]\d*(\.\d+)?$" placeholder="Digite o valor unitário do Produto" id="text-302c" name="valorUnitario" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
               </div>
               <div class="u-form-group u-form-group-4">
-                <label for="text-347b" class="u-label">UNIDADES</label>
-                <input type="text" id="text-347b" name="unidade" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
+                <label for="unidade" class="u-label">UNIDADE</label>
+                <select name="unidade" id="unidade" required>
+                  <option value="KG">Quilograma</option>
+                  <option value="LT">Litro</option>
+                  <option value="UN">Unidade</option>
+                  <option value="MT">Metro</option>
+                </select>
               </div>
               <div class="u-form-group u-form-group-5">
                 <label for="text-9312" class="u-label">ESTOQUE MÍNIMO</label>
-                <input type="text" id="text-9312" name="estoqueMinimo" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
+                <input type="number" id="text-9312" min="0" name="estoqueMinimo" placeholder="Estoque mínimo" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
               </div>
               <div class="u-form-group u-form-group-6">
                 <label for="text-eae9" class="u-label">QUANTIDADE NO ESTOQUE</label>
-                <input type="text" placeholder="" id="text-eae9" name="qtdEstoque" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
-              </div>
+                <input type="NUMBER" min="0" placeholder="Quantidade no estoque" id="text-eae9" name="qtdEstoque" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
+              </div>         
               <div class="u-align-right u-form-group u-form-submit">
-              <button type="submit" class="u-active-palette-4-light-1 u-border-5 u-border-active-palette-4-light-1 u-border-hover-palette-4-light-1 u-border-palette-4-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-4-light-1 u-palette-4-base u-radius-10 u-btn-1">CADASTRAR</button>
+                <button type="submit" class="u-active-palette-4-light-1 u-border-5 u-border-active-palette-4-light-1 u-border-hover-palette-4-light-1 u-border-palette-4-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-4-light-1 u-palette-4-base u-radius-10 u-btn-1">CADASTRAR</button>
               </div>
               <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
               <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>

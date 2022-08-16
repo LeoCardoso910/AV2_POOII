@@ -15,7 +15,7 @@ $clientes = Cliente::listar();
   <meta charset="utf-8">
   <meta name="keywords" content="CADASTRAR CLIENTE, LOJA PHP">
   <meta name="description" content="">
-  <title>PRODUTOS</title>
+  <title>CARRINHO</title>
   <link rel="stylesheet" href="../css/nicepage.css" media="screen">
   <link rel="stylesheet" href="../css/PRODUTOS.css" media="screen">
   <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
@@ -233,7 +233,7 @@ $clientes = Cliente::listar();
     <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
       <div class="u-expanded-width u-table u-table-responsive u-table-1">
         <h1>Carrinho vazio</h1>
-        <h3><a style="color: purple;" href="vendas.php">Adicionar produtos</a></h3>
+        <h3><a style="color: purple;" href="vendas.php#carousel_cfa9">Adicionar produtos</a></h3>
       </div>
     </div>
   </section>

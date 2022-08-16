@@ -52,33 +52,27 @@ class Produto {
         
     }
 
-    public function incluir(){
+    public static function incluir($argDescricao, $argValorUnitario, $argUnidade, $argEstoqueMinimo, $argQtdEstoque){
         $db = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
-        $sql = "INSERT INTO produto (codProduto, descricao, valorUnitario, unidade, estoqueMinimo, qtdEstoque) VALUES ('$this->codProduto', '$this->descricao', '$this->valorUnitario', '$this->unidade', '$this->estoqueMinimo', '$this->qtdEstoque')";
+        $sql = "INSERT INTO produto (descricao, valorUnitario, unidade, estoqueMinimo, qtdEstoque) VALUES ('$argDescricao', '$argValorUnitario', '$argUnidade', '$argEstoqueMinimo', '$argQtdEstoque')";
         $db->execute($sql);
     }
 
-    public function alterar($argCodProduto){
+    public static function alterar($codProduto, $descricao, $valorUnitario, $unidade, $estoqueMinimo, $qtdEstoque){
         $db = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
-        $sql = "UPDATE produto SET codProduto = '$this->codProduto', descricao = '$this->descricao', valorUnitario = '$this->valorUnitario', unidade = '$this->unidade',  estoqueMinimo = '$this->estoqueMinimo', qtdEstoque = '$this->qtdEstoque' WHERE codProduto = $argCodProduto";
+        $sql = "UPDATE produto SET descricao = '$descricao', valorUnitario = '$valorUnitario', unidade = '$unidade',  estoqueMinimo = '$estoqueMinimo', qtdEstoque = '$qtdEstoque' WHERE codProduto = $codProduto";
         $db->execute($sql);
     }
 
     public function salvar($codProduto = null){
         $existe = $this->existe($this->codProduto);
-        $existe == true ? (($codProduto) == null ? $this->alterar($this->codProduto) : $this->alterar($codProduto)) : $this->incluir();
+        $existe == true ? (($codProduto) == null ? $this->alterar(1,2,3,4,5,6) : $this->alterar(1,2,3,4,5,6)) : $this->incluir(1,2,3,4,5);
     }
 
-    public function excluir($argCodProduto){
+    public static function excluir($argCodProduto){
         $db = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
-        $existe = $this->existe($argCodProduto);
-        if($existe == true){
-            $sql = "DELETE FROM produto WHERE codProduto = $argCodProduto";
-            $result = $db->execute($sql);
-        }else{
-            $result = "Produto não existe";
-        }
-        return $result;
+        $sql = "DELETE FROM produto WHERE codProduto = $argCodProduto";
+        $db->execute($sql);
     }
 
     public function baixarEstoque($argQtd){

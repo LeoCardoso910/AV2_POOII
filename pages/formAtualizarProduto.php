@@ -1,13 +1,15 @@
 <?php
-require_once __DIR__ . '/../class/DetalheVenda.php';
+require_once __DIR__ . '/../class/Produto.php';
+session_start();
+$codProduto = isset($_GET['codProduto']) ? $_GET['codProduto'] : null;
+$descricao = isset($_GET['descricao']) ? $_GET['descricao'] : null;
+$valorUnitario = isset($_GET['valorUnitario']) ? $_GET['valorUnitario'] : null;
+$unidade = isset($_GET['unidade']) ? $_GET['unidade'] : null;
+$estoqueMinimo = isset($_GET['estoqueMinimo']) ? $_GET['estoqueMinimo'] : null;
+$qtdEstoque = isset($_GET['qtdEstoque']) ? $_GET['qtdEstoque'] : null;
+$unidades = isset($_SESSION['units']) ? unserialize($_SESSION['units']) : null;
 
-$codVenda = isset($_GET['codVenda']) ? $_GET['codVenda'] : null;
-$codCliente = isset($_GET['codCliente']) ? $_GET['codCliente'] : null;
-$dataVenda = isset($_GET['dataVenda']) ? $_GET['dataVenda'] : null;
-
-$detalhesVenda = DetalheVenda::getListaProduto($codVenda);
-$subTotal = DetalheVenda::getSubTotal($codVenda);
-
+$query = Produto::listar();
 ?>
 <!DOCTYPE html>
 <html style="font-size: 16px;" lang="pt">
@@ -15,11 +17,13 @@ $subTotal = DetalheVenda::getSubTotal($codVenda);
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
-  <meta name="keywords" content="​CADASTRAR VENDAS, LOJA PHP">
+  <meta name="keywords" content="CADASTRAR CLIENTE, LOJA PHP">
   <meta name="description" content="">
-  <title>DETALHE DA VENDA</title>
+  <title>ATUALIZAR PRODUTO</title>
   <link rel="stylesheet" href="../css/nicepage.css" media="screen">
-  <link rel="stylesheet" href="../css/VENDAS.css" media="screen">
+  <link rel="stylesheet" href="../css/PRODUTOS.css" media="screen">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
   <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
   <meta name="generator" content="Nicepage 4.14.1, nicepage.com">
@@ -36,7 +40,7 @@ $subTotal = DetalheVenda::getSubTotal($codVenda);
     }
   </script>
   <meta name="theme-color" content="#478ac9">
-  <meta property="og:title" content="VENDAS">
+  <meta property="og:title" content="PRODUTOS">
   <meta property="og:type" content="website">
 </head>
 
@@ -94,58 +98,57 @@ $subTotal = DetalheVenda::getSubTotal($codVenda);
       </nav>
     </div>
   </header>
-  <section class="u-align-center u-clearfix u-gradient u-section-1" id="sec-974e">
+  <section class="u-align-center u-clearfix u-gradient u-section-2" id="carousel_ae01">
     <div class="u-clearfix u-sheet u-sheet-1">
-      <div class="u-expanded-width u-table u-table-responsive u-table-1">
-        <table class="u-table-entity u-table-entity-1">
-          <colgroup>
-            <col width="12.5%">
-            <col width="12.5%">
-            <col width="12.5%">
-            <col width="12.5%">
-            <col width="12.5%">
-            <col width="12.5%">
-            <col width="12.5%">
-            <col width="12.5%">
-          </colgroup>
-          <tbody class="u-table-alt-palette-1-light-3 u-table-body">
-            <tr style="height: 65px;">
-              <td class="u-align-center u-table-cell u-table-cell-1">CÓDIGO DA VENDA</td>
-              <td class="u-align-center u-table-cell u-table-cell-2">CÓDIGO DO CLIENTE</td>
-              <td class="u-align-center u-table-cell u-table-cell-3">CÓDIGO DO PRODUTO</td>
-              <td class="u-align-center u-table-cell u-table-cell-3">QUANTIDADE DO PRODUTO</td>
-              <td class="u-align-center u-table-cell u-table-cell-3">DESCRIÇÃO DO PRODUTO</td>
-              <td class="u-align-center u-table-cell u-table-cell-3">VALOR UNITÁRIO DO PRODUTO</td>
-              <td class="u-align-center u-table-cell u-table-cell-3">SUBTOTAL DA VENDA</td>
-              <td class="u-align-center u-table-cell u-table-cell-3">DATA DA VENDA</td>
-              <td class="u-table-cell"></td>
-            </tr>
-            <?php while($row = $detalhesVenda->fetch(PDO::FETCH_ASSOC)){ ?>
-              <tr style="height: 65px;">
-                <td class="u-align-center u-table-cell"><?= $codVenda ?></td>
-                <td class="u-align-center u-table-cell"><?= $codCliente ?></td>
-                <td class="u-align-center u-table-cell"><?= $row['codProduto'] ?></td>
-                <td class="u-align-center u-table-cell"><?= $row['qtdProduto'] ?></td>
-                <td class="u-align-center u-table-cell"><?= $row['descricao'] ?></td>
-                <td class="u-align-center u-table-cell">R$ <?= $row['valorUnitario'] ?></td>
-                <td class="u-align-center u-table-cell">R$ <?= $subTotal->fetch()['subTotal'] ?></td>
-                <td class="u-align-center u-table-cell"><?= $dataVenda ?></td>
-              </tr>
-            <?php } ?>
-          </tbody>
-        </table>
+      <h2 class="u-text u-text-default u-text-1">ATUALIZAR PRODUTO</h2>
+      <h5 class="u-text u-text-default u-text-1">Código do produto: <?= $codProduto ?></h5>
+      <div class="u-align-center u-container-style u-group u-radius-30 u-shape-round u-white u-group-1">
+        <div class="u-container-layout u-container-layout-1">
+          <div class="u-expanded-width u-form u-form-1">
+            <form action="../interfaces/atualizacao/atualizarProduto.php" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" source="email" name="form" style="padding: 0px;">
+              <div class="u-form-email u-form-group">
+                <label for="text-4c18" class="u-label">DESCRIÇÃO</label>
+                <input value="<?= $descricao ?>" type="text" placeholder="Descrição do produto" id="text-4c18" name="descricao" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="">
+              </div>
+              <div class="u-form-group u-form-group-3">
+                <label for="text-302c" class="u-label">VALOR UNITÁRIO</label>
+                <input value="<?= $valorUnitario ?>" pattern="^[1-9]\d*(\.\d+)?$" type="text" placeholder="Digite o valor unitário do Produto" id="text-302c" name="valorUnitario" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
+              </div>
+              <div class="u-form-group u-form-group-4">
+                <label for="unidade" class="u-label">UNIDADE</label>
+                <select name="unidade" id="unidade" required>
+                    <?php foreach($unidades as $un => $desc){ $value = ($un == $unidade) ? "value='$un' selected" : "value='$un'";?>
+                           <option <?=$value?>><?=$desc?></option>
+                    <?php } ?>
+                </select>
+              </div>
+              <div class="u-form-group u-form-group-5">
+                <label for="text-9312" class="u-label">ESTOQUE MÍNIMO</label>
+                <input value="<?= $estoqueMinimo ?>" type="number" min="0" id="text-9312" placeholder="Estoque mínimo" name="estoqueMinimo" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
+              </div>
+              <div class="u-form-group u-form-group-6">
+                <label for="text-eae9" class="u-label">QUANTIDADE NO ESTOQUE</label>
+                <input value="<?= $qtdEstoque ?>" type="NUMBER" min="0" placeholder="Quantidade no estoque" min="1" id="text-eae9" name="qtdEstoque" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
+              </div>
+              <input type="hidden" name="codProduto" id="codProduto" value="<?= $codProduto ?>">
+              <div class="u-align-right u-form-group u-form-submit">
+                <button onclick="return confirm('Tem certeza que dejesa atualizar esse registro?')" type="submit" class="u-active-palette-4-light-1 u-border-5 u-border-active-palette-4-light-1 u-border-hover-palette-4-light-1 u-border-palette-4-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-4-light-1 u-palette-4-base u-radius-10 u-btn-1">ATUALIZAR</button>
+              </div>
+              <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
+              <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
+              <input type="hidden" value="" name="recaptchaResponse">
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   </section>
-
-
   <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-b990">
     <div class="u-clearfix u-sheet u-sheet-1">
       <h2 class="u-subtitle u-text u-text-1">LOJA PHP</h2>
       <p class="u-small-text u-text u-text-variant u-text-2">CREATED BY LÉO, ANA, PEDRO E JOÃO&nbsp;</p>
     </div>
   </footer>
-
 </body>
 
 </html>

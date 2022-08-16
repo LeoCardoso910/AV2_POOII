@@ -18,6 +18,7 @@ $produtos = Produto::listar();
 	<title>VENDAS</title>
 	<link rel="stylesheet" href="../css/nicepage.css" media="screen">
 	<link rel="stylesheet" href="../css/VENDAS.css" media="screen">
+	<link rel="stylesheet" href="../css/style.css">
 	<script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
 	<script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
 	<meta name="generator" content="Nicepage 4.14.1, nicepage.com">
@@ -124,13 +125,16 @@ $produtos = Produto::listar();
 	</section>
 	<section class="u-align-center u-clearfix u-gradient u-section-2" id="carousel_cfa9">
 		<div class="u-clearfix u-sheet u-sheet-1">
-			<h2 class="u-text u-text-default u-text-1">REALIZAR VENDA</h2>
+			<h2 class="u-text u-text-default u-text-1">VENDA</h2>
 			</BR>
 			<hr>
 				<h1>PRODUTOS</h1>
-				<div style="display: flex; justify-content: space-evenly;">
+				<div style="
+					display: flex;
+					justify-content: space-between;"
+  				>
 				<?php while ($prow = $produtos->fetch()) { ?>
-					<div>
+					<div class="product">
 					<a style="color: purple;" href="produtoVenda.php?codProduto=<?= $prow['codProduto'] ?>">
 					<h4><?= $prow['descricao'] ?></h4>
 					<img width="150px" height="150px" src="<?= $prow['imagem'] ?>" alt="">
