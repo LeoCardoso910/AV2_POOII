@@ -40,6 +40,13 @@ class DetalheVenda{
         $sql = "DELETE FROM detalhevenda WHERE codVenda = $this->codVenda AND codProduto = $this->codProduto";
         $conexao->execute($sql);
     }
+
+    public static function getTotal($argCodVenda){
+        $conexao = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
+        $sql = "SELECT SUM(p.valorUnitario * dv.qtdProduto) as total FROM detalhevenda dv inner join produto p on dv.codProduto = p.codProduto inner join venda v on v.codVenda = dv.codVenda WHERE dv.codVenda = $argCodVenda";
+        return $conexao->query($sql)->fetch()['total'];
+    }
+
     public static function getSubTotal($argCodVenda){
         $conexao = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
         $sql = "SELECT (p.valorUnitario * dv.qtdProduto) as subTotal FROM detalhevenda dv inner join produto p on dv.codProduto = p.codProduto inner join venda v on v.codVenda = dv.codVenda WHERE dv.codVenda = $argCodVenda";

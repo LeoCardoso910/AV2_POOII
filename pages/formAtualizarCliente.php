@@ -1,6 +1,12 @@
 <?php
-require_once __DIR__ . '/../class/Cliente.php';
-$query = Cliente::listar();
+
+$codCliente = isset($_GET['codCliente']) ? $_GET['codCliente'] : null;
+$cpf = isset($_GET['cpf']) ? $_GET['cpf'] : null;
+$nomeCliente = isset($_GET['nomeCliente']) ? $_GET['nomeCliente'] : null;
+$renda = isset($_GET['renda']) ? str_replace(',', '.', $_GET['renda']) : null;
+$email = isset($_GET['email']) ? $_GET['email'] : null;
+
+
 ?>
 <!DOCTYPE html>
 <html style="font-size: 16px;" lang="pt">
@@ -10,11 +16,11 @@ $query = Cliente::listar();
   <meta charset="utf-8">
   <meta name="keywords" content="CADASTRAR CLIENTE, LOJA PHP">
   <meta name="description" content="">
-  <title>CLIENTES</title>
+  <title>ATUALIZAR CLIENTE</title>
   <link rel="stylesheet" href="../css/nicepage.css" media="screen">
-  <link rel="stylesheet" href="../css/CLIENTES.css" media="screen">
+  <link rel="stylesheet" href="../css/PRODUTOS.css" media="screen">
+  <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="../css/style.css" media="screen">
   <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
   <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
   <meta name="generator" content="Nicepage 4.14.1, nicepage.com">
@@ -31,7 +37,7 @@ $query = Cliente::listar();
     }
   </script>
   <meta name="theme-color" content="#478ac9">
-  <meta property="og:title" content="CLIENTES">
+  <meta property="og:title" content="PRODUTOS">
   <meta property="og:type" content="website">
 </head>
 
@@ -89,81 +95,33 @@ $query = Cliente::listar();
       </nav>
     </div>
   </header>
-  <section class="u-align-center u-clearfix u-gradient u-section-1" id="sec-c648">
-    <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-      <div class="u-expanded-width u-table u-table-responsive u-table-1">
-        <table class="u-table-entity u-table-entity-1">
-          <colgroup>
-            <col width="12.5%">
-            <col width="12.5%">
-            <col width="12.5%">
-            <col width="12.5%">
-            <col width="12.5%">
-            <col width="12.5%">
-            <col width="12.5%">
-            <col width="12.5%">
-          </colgroup>
-          <tbody class="u-table-alt-palette-1-light-3 u-table-body">
-            <tr style="height: 65px;">
-              <td class="u-align-center u-table-cell">CÓDIGO DO CLIENTE</td>
-              <td class="u-align-center u-table-cell">CPF</td>
-              <td class="u-align-center u-table-cell">NOME</td>
-              <td class="u-align-center u-table-cell">EMAIL</td>
-              <td class="u-align-center u-table-cell">RENDA</td>
-              <td class="u-align-center u-table-cell">CLASSE</td>
-              <td class="u-align-center u-table-cell">ALTERAR</td>
-              <td class="u-align-center u-table-cell">EXCLUIR</td>
-            </tr>
-            <?php while ($row = $query->fetch()) { ?>
-              <tr style="height: 65px;">
-                <td class="u-align-center u-table-cell"><?= $row['cod_cliente'] ?></td>
-                <td class="u-align-center u-table-cell"><?= $row['cpf'] ?></td>
-                <td class="u-align-center u-table-cell"><?= $row['nomeCliente'] ?></td>
-                <td class="u-align-center u-table-cell"><?= $row['email'] ?></td>
-                <td class="u-align-center u-table-cell">R$ <?= str_replace('.', ',', $row['renda']) ?></td>
-                <td class="u-align-center u-table-cell"><?= $row['classe'] ?></td>
-                <td class="u-align-center u-table-cell">
-                  <a href="formAtualizarCliente.php?codCliente=<?= $row['cod_cliente'] ?>&cpf=<?= $row['cpf'] ?>&nomeCliente=<?= $row['nomeCliente'] ?>&email=<?= $row['email'] ?>&renda=<?= $row['renda'] ?>">
-                    <i class="fa-solid fa-pen-to-square"></i>
-                  </a>
-                </td>
-                <td class="u-align-center u-table-cell">
-                  <a onclick=" return confirm('Tem certeza que deseja excluir esse registro?')" href="../interfaces/exclusao/excluirCliente.php?codCliente=<?= $row['cod_cliente'] ?>">
-                    <i class="fa-solid fa-trash-can"></i>
-                  </a>
-                </td>
-              </tr>
-            <?php } ?>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
   <section class="u-align-center u-clearfix u-gradient u-section-2" id="carousel_ae01">
     <div class="u-clearfix u-sheet u-sheet-1">
-      <h2 class="u-text u-text-default u-text-1">CADASTRAR CLIENTE</h2>
+      <h2 class="u-text u-text-default u-text-1">ATUALIZAR CLIENTE</h2>
+      <h5 class="u-text u-text-default u-text-1">Código do cliente: <?= $codCliente ?></h5>
       <div class="u-align-center u-container-style u-group u-radius-30 u-shape-round u-white u-group-1">
         <div class="u-container-layout u-container-layout-1">
           <div class="u-expanded-width u-form u-form-1">
-            <form action="../interfaces/cadastro/cadastrarCliente.php" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" source="email" name="form" style="padding: 0px;">
+            <form action="../interfaces/atualizacao/atualizarCliente.php" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" source="email" name="form" style="padding: 0px;">
               <div class="u-form-email u-form-group">
-                <label for="text-4c18" class="u-label">CPF</label>
-                <input type="text" placeholder="Digite o CPF do Cliente" id="text-4c18" name="cpf" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="">
+                <label for="text-4c18" class="u-label">NOME DO CLIENTE</label>
+                <input value="<?= $nomeCliente ?>" type="text" pattern="/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/" placeholder="Nome do cliente" id="text-4c18" name="nomeCliente" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="">
               </div>
               <div class="u-form-group u-form-group-3">
-                <label for="text-302c" class="u-label">NOME DO CLIENTE</label>
-                <input type="text" pattern="/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/" placeholder="Digite o nome do Cliente" id="text-302c" name="nomeCliente" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
+                <label for="text-302c" class="u-label">CPF</label>
+                <input value="<?= $cpf ?>" pattern="[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}" type="text" placeholder="Digite o cpf do cliente" id="text-302c" name="cpf" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
               </div>
               <div class="u-form-group u-form-group-4">
-                <label for="text-347b" class="u-label">EMAIL</label>
-                <input type="email" placeholder="Ex: joao@gmail.com" id="text-347b" name="email" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
+                <label for="unidade" class="u-label">EMAIL</label>
+                <input value="<?= $email ?>" type="email" placeholder="Digite o e-mail do cliente" id="text-302c" name="email" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
               </div>
               <div class="u-form-group u-form-group-5">
                 <label for="text-9312" class="u-label">RENDA</label>
-                <input type="text" pattern="[1-9]\d*(\.\d+)?$" id="text-9312" placeholder="Ex: R$ 1000,00" name="renda" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
+                <input value="<?= $renda ?>" type="text" pattern="[1-9]\d*(\.\d+)?$" id="text-9312" placeholder="Digite a renda do cliente" name="renda" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
               </div>
+              <input type="hidden" name="codCliente" id="codCliente" value="<?= $codCliente ?>">
               <div class="u-align-right u-form-group u-form-submit">
-                <button type="submit" class="u-active-palette-4-light-1 u-border-5 u-border-active-palette-4-light-1 u-border-hover-palette-4-light-1 u-border-palette-4-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-4-light-1 u-palette-4-base u-radius-10 u-btn-1">CADASTRAR</button>
+                <button onclick="return confirm('Tem certeza que dejesa atualizar esse registro?')" type="submit" class="u-active-palette-4-light-1 u-border-5 u-border-active-palette-4-light-1 u-border-hover-palette-4-light-1 u-border-palette-4-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-4-light-1 u-palette-4-base u-radius-10 u-btn-1">ATUALIZAR</button>
               </div>
               <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
               <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
@@ -174,15 +132,12 @@ $query = Cliente::listar();
       </div>
     </div>
   </section>
-
-
   <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-b990">
     <div class="u-clearfix u-sheet u-sheet-1">
       <h2 class="u-subtitle u-text u-text-1">LOJA PHP</h2>
       <p class="u-small-text u-text u-text-variant u-text-2">CREATED BY LÉO, ANA, PEDRO E JOÃO&nbsp;</p>
     </div>
   </footer>
-
 </body>
 
 </html>

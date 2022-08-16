@@ -36,6 +36,12 @@ class Cliente{
         
     }
 
+    public static function alterar($codCliente, $cpf, $nomeCliente, $email, $renda, $classe){
+        $db = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
+        $sql = "UPDATE cliente SET nomeCliente = '$nomeCliente', email = '$email', renda = '$renda', classe = '$classe', cpf = '$cpf' WHERE cod_cliente = $codCliente";
+        $db->execute($sql);
+    }
+
     public static function incluir($argCpf, $argNomeCliente, $argEmail, $argRenda, $argClasse){
         $db = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
         $sql = "INSERT INTO cliente (cpf, nomeCliente, email, renda, classe) VALUES ('$argCpf', '$argNomeCliente', '$argEmail', '$argRenda', '$argClasse')";
@@ -43,17 +49,12 @@ class Cliente{
     }
 
 
-    public function excluir($codCliente){
+    public static function excluir($argCodCliente){
         $db = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
-        $existe = $this->existe($codCliente);
-        if($existe == true){
-            $sql = "DELETE FROM cliente WHERE cod_cliente = $codCliente";
-            $result = $db->execute($sql);
-        }else{
-            $result = "Cliente não existe";
-        }
-        return $result;
+        $sql = "DELETE FROM cliente WHERE cod_cliente = $argCodCliente";
+        $db->execute($sql);
     }
+
 
     public static function calculaClasse($argRenda){
         if($argRenda <= 2000){

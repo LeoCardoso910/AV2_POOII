@@ -7,6 +7,7 @@ $dataVenda = isset($_GET['dataVenda']) ? $_GET['dataVenda'] : null;
 
 $detalhesVenda = DetalheVenda::getListaProduto($codVenda);
 $subTotal = DetalheVenda::getSubTotal($codVenda);
+$total = DetalheVenda::getTotal($codVenda);
 
 ?>
 <!DOCTYPE html>
@@ -132,6 +133,9 @@ $subTotal = DetalheVenda::getSubTotal($codVenda);
                 <td class="u-align-center u-table-cell"><?= $dataVenda ?></td>
               </tr>
             <?php } ?>
+            <tr style="height: 65px;">
+              <td colspan="8" class="u-align-center u-table-cell"><h2>Total da venda: R$<?= $total ?></h2></td>
+            </tr>
           </tbody>
         </table>
       </div>
