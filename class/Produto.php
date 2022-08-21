@@ -52,6 +52,13 @@ class Produto {
         
     }
 
+    public static function getSubtotalProduto($qtd, $codProduto){
+        $conexao = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
+        $sql = "SELECT ($qtd * p.valorUnitario) as subTotal FROM produto p WHERE p.codProduto = $codProduto;";
+        $resultado = $conexao->query($sql)->fetch()['subTotal'];
+        return $resultado;
+    }
+
     public static function incluir($argDescricao, $argValorUnitario, $argUnidade, $argEstoqueMinimo, $argQtdEstoque){
         $db = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
         $sql = "INSERT INTO produto (descricao, valorUnitario, unidade, estoqueMinimo, qtdEstoque) VALUES ('$argDescricao', '$argValorUnitario', '$argUnidade', '$argEstoqueMinimo', '$argQtdEstoque')";
@@ -75,14 +82,16 @@ class Produto {
         $db->execute($sql);
     }
 
-    public function baixarEstoque($argQtd){
-        $this->qtdEstoque -= $argQtd;
-        $this->salvar($this->codProduto);
+    public static function baixarEstoque($codProduto, $qtd){
+        $db = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
+        $sql = "UPDATE produto SET qtdEstoque = qtdEstoque - $qtd WHERE codProduto = $codProduto";
+        $db->execute($sql);
     }
 
-    public function subirEstoque($argQtd){
-        $this->qtdEstoque += $argQtd;
-        $this->salvar($this->codProduto);
+    public static function subirEstoque($codProduto, $qtd){
+        $db = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
+        $sql = "UPDATE produto SET qtdEstoque = qtdEstoque + $qtd WHERE codProduto = $codProduto";
+        $db->execute($sql);
     }
 
     public function estoqueBaixo(){
