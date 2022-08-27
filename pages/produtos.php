@@ -136,11 +136,11 @@ isset($_GET['msg']) ? ($_GET['msg'] == 'estoqueInvalido' ? alertEstoqueInvalido(
               </div>
               <div class="u-form-group u-form-group-4">
                 <label for="unidade" class="u-label">UNIDADE</label>
-                <select name="unidade" id="unidade" required>
-                  <option value="KG">Quilograma</option>
-                  <option value="LT">Litro</option>
-                  <option value="UN">Unidade</option>
-                  <option value="MT">Metro</option>
+                <select class="u-active-palette-4-light-2 u-border-none u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-4-light-1 u-radius-9 u-text-body-alt-color u-text-hover-white u-btn-1"><span class="u-icon u-text-white u-icon-1"> name="unidade" id="unidade" required>
+                  <option value="KG">QUILOGRAMA</option>
+                  <option value="LT">LITRO</option>
+                  <option value="UN">UNIDADE</option>
+                  <option value="MT">METRO</option>
                 </select>
               </div>
               <div class="u-form-group u-form-group-5">
