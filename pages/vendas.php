@@ -105,7 +105,7 @@ $produtos = Produto::listar();
 				<?php while ($prow = $produtos->fetch()) { ?>
 					<?php if($prow['qtdEstoque'] > $prow['estoqueMinimo']) { ?>
 						<div class="product">
-							<a style="color: purple;" href="produtoVenda.php?codProduto=<?= $prow['codProduto'] ?>">
+							<a style="color: black;" href="produtoVenda.php?codProduto=<?= $prow['codProduto'] ?>">
 								<h4><?= $prow['descricao'] ?></h4>
 								<img width="150px" height="150px" src="<?= $prow['imagem'] ?>" alt="">
 								<h5>R$ <?= $prow['valorUnitario'] ?></h5>
@@ -113,9 +113,9 @@ $produtos = Produto::listar();
 						</div>
 					<?php } else { ?>
 						<div class="product">
-						<a style="color: purple;" href="formAtualizarProduto.php?codProduto=<?= $prow['codProduto'] ?>&descricao=<?= $prow['descricao'] ?>&valorUnitario=<?= $prow['valorUnitario'] ?>&unidade=<?= $prow['unidade'] ?>&estoqueMinimo=<?= $prow['estoqueMinimo'] ?>&qtdEstoque=<?= $prow['qtdEstoque'] ?>">
+						<a style="color: black;" href="formAtualizarProduto.php?codProduto=<?= $prow['codProduto'] ?>&descricao=<?= $prow['descricao'] ?>&valorUnitario=<?= $prow['valorUnitario'] ?>&unidade=<?= $prow['unidade'] ?>&estoqueMinimo=<?= $prow['estoqueMinimo'] ?>&qtdEstoque=<?= $prow['qtdEstoque'] ?>">
 							<h4><?= $prow['descricao'] ?></h4>
-							<h3 style="color: red; font-weight: bold;">ESGOTADO!</h3>
+							<h3 style="color: black; font-weight: bold;">ESGOTADO!</h3>
 							<img width="150px" height="150px" src="<?= $prow['imagem'] ?>" alt="">
 							<h5>R$ <?= $prow['valorUnitario'] ?></h5>
 						</a>
