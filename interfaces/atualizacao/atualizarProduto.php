@@ -8,10 +8,7 @@
     $estoqueMinimo = isset($_POST['estoqueMinimo']) ? strip_tags($_POST['estoqueMinimo']) : null;
     $qtdEstoque = isset($_POST['qtdEstoque']) ? strip_tags($_POST['qtdEstoque']) : null;
 
-    if ($qtdEstoque > $estoqueMinimo){
-        Produto::alterar($codProduto, $descricao, $valorUnitario, $unidade, $estoqueMinimo, $qtdEstoque);
-        header('Location: ../../pages/produtos.php');
-    } else{
-          header('Location: ../../pages/produtos.php?msg=estoqueInvalido');
-    }
+
+    Produto::alterar($codProduto, $descricao, $valorUnitario, $unidade, $estoqueMinimo, $qtdEstoque);
+    header('Location: ../../pages/produtos.php');
 ?>

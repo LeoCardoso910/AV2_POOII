@@ -106,32 +106,46 @@ $produtos = Produto::listar();
 							<div class="card">
 								<img class='mx-auto img-thumbnail' src="<?= $prow['imagem'] ?>" width="100px" height="100px" />
 								<div class="card-body text-center mx-auto">
-									<div class='cvp pt-4'>
+									<div class='cvp pt-5'>
 										<h5 class="card-title font-weight-bold"><?= $prow['descricao'] ?></h5>
-										<p class="card-text price">R$ <?= $prow['valorUnitario'] ?></p>
-										<a href="produtoVenda.php?codProduto=<?= $prow['codProduto'] ?>" class="btn cart px-auto">ADICIONAR AO CARRINHO</a>
+										<p class="card-text price pt-2">R$ <?= $prow['valorUnitario'] ?></p>
+										<a href="produtoVenda.php?codProduto=<?= $prow['codProduto'] ?>" class="u-active-palette-4-light-1 u-border-5 u-border-active-palette-4-light-1 u-border-hover-palette-4-light-1 u-border-palette-4-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-4-light-1 u-palette-4-base u-radius-10 u-btn-1">ADICIONAR AO CARRINHO</a>
 									</div>
 								</div>
 							</div>
 						</div>
 
-					<?php } else { ?>
+					<?php } else if (($prow['qtdEstoque'] <= $prow['estoqueMinimo']) && ($prow['qtdEstoque'] > 0)) { ?>
 						<div class='container-fluid d-flex justify-content-center'>
 							<div class="card">
 								<img class='mx-auto img-thumbnail' src="<?= $prow['imagem'] ?>" width="100px" height="100px" />
 								<div class="card-body text-center mx-auto">
 									<div class='cvp'>
 										<h5 class="card-title font-weight-bold"><?= $prow['descricao'] ?></h5>
-										<h4 class="card-title font-weight-bold" style="color: red;">ESGOTADO!</h4>
 										<p class="card-text price">R$ <?= $prow['valorUnitario'] ?></p>
-										<a href="formAtualizarProduto.php?codProduto=<?= $prow['codProduto'] ?>&descricao=<?= $prow['descricao'] ?>&valorUnitario=<?= $prow['valorUnitario'] ?>&unidade=<?= $prow['unidade'] ?>&estoqueMinimo=<?= $prow['estoqueMinimo'] ?>&qtdEstoque=<?= $prow['qtdEstoque'] ?>" class="btn cart px-auto">ATUALIZAR ESTOQUE</a>
+										<h4 class="card-title font-weight-bold" style="color: red;">ESGOTANDO!</h4>
+										<h4 class="card-title font-weight-bold" style="color: red;"><?= $prow['qtdEstoque'] ?> UNIDADES RESTANTES</h4>
+										<a href="produtoVenda.php?codProduto=<?= $prow['codProduto'] ?>" class="u-active-palette-4-light-1 u-border-5 u-border-active-palette-4-light-1 u-border-hover-palette-4-light-1 u-border-palette-4-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-4-light-1 u-palette-4-base u-radius-10 u-btn-1">ADICIONAR AO CARRINHO</a>
 									</div>
 								</div>
 							</div>
 						</div>
 						
-					<?php } ?>
-				<?php } ?>
+					<?php } else if ($prow['qtdEstoque'] == 0) { ?>
+						<div class='container-fluid d-flex justify-content-center'>
+							<div class="card">
+								<img class='mx-auto img-thumbnail' src="<?= $prow['imagem'] ?>" width="100px" height="100px" />
+								<div class="card-body text-center mx-auto">
+									<div class='cvp pt-4'>
+										<h5 class="card-title font-weight-bold pt-3"><?= $prow['descricao'] ?></h5>										
+										<p class="card-text price">R$ <?= $prow['valorUnitario'] ?></p>
+										<h4 class="card-title font-weight-bold" style="color: red;">ESGOTADO!</h4>
+										<a href="formAtualizarProduto.php?codProduto=<?= $prow['codProduto'] ?>&descricao=<?= $prow['descricao'] ?>&valorUnitario=<?= $prow['valorUnitario'] ?>&unidade=<?= $prow['unidade'] ?>&estoqueMinimo=<?= $prow['estoqueMinimo'] ?>&qtdEstoque=<?= $prow['qtdEstoque'] ?>"  class="u-active-palette-4-light-1 u-border-5 u-border-active-palette-4-light-1 u-border-hover-palette-4-light-1 u-border-palette-4-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-4-light-1 u-palette-4-base u-radius-10 u-btn-1">ATUALIZAR ESTOQUE</a>
+									</div>
+								</div>
+							</div>
+						</div>
+				<?php } } ?>
 			</div>
 		</div>
 	</section>

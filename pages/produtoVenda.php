@@ -70,7 +70,7 @@ $produto = Produto::listarPorId(isset($_GET['codProduto']) ? $_GET['codProduto']
             <h1><?= $produto['descricao'] ?></h1>
             <p id="subTotal" class="price">R$ <?= $produto['valorUnitario'] ?></p>
             <p>
-              <input type="number" value="1" min="1" max="<?= $produto['qtdEstoque'] - $produto['estoqueMinimo'] ?>" name="qtde" id="qtde" placeholder="Quantidade" required></input><br>
+              <input class="u-active-palette-4-light-1 u-border-5 u-border-active-palette-4-light-1 u-border-hover-palette-4-light-1 u-border-palette-4-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-4-light-1 u-palette-4-base u-radius-10 u-btn-1" type="number" value="1" min="1" max="<?= $produto['qtdEstoque'] ?>" name="qtde" id="qtde" placeholder="Quantidade" required></input><br>
             </p>
             <input type="hidden" value="<?= $produto['codProduto'] ?>" name="codProduto" id="codProduto">
             <button type="submit">Adicionar ao carrinho</button>
