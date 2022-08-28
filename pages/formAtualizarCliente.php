@@ -94,7 +94,7 @@ isset($_GET['msg']) ? ($_GET['msg'] == 'cpfInvalido' ? alert() : '') : '';
                 </div>
                 <div class="u-form-group u-form-group-5">
                   <label for="text-9312" class="u-label">RENDA</label>
-                  <input value="<?= $renda ?>" type="text" pattern="[1-9]\d*(\.\d+)?$" id="text-9312" placeholder="Digite a renda do cliente" name="renda" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
+                  <input value="<?= $renda ?>" type="text" pattern="[1-9]\d*(\,\d+)?$" id="text-9312" placeholder="Digite a renda do cliente" name="renda" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="required">
                 </div>
                 <input type="hidden" name="codCliente" id="codCliente" value="<?= $codCliente ?>">
                 <div class="u-align-right u-form-group u-form-submit">

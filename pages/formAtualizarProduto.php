@@ -89,10 +89,10 @@ $unidades = isset($_SESSION['units']) ? unserialize($_SESSION['units']) : null;
               <div class="u-form-group u-form-group-4">
                 <label for="unidade" class="u-label">UNIDADE</label>
                 <select class="u-active-palette-4-light-2 u-border-none u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-4-light-1 u-radius-9 u-text-body-alt-color u-text-hover-white u-btn-1" name="unidade" id="unidade" required>
-                  <option value="KG">QUILOGRAMA</option>
-                  <option value="LT">LITRO</option>
-                  <option value="UN">UNIDADE</option>
-                  <option value="MT">METRO</option>
+                  <?php foreach ($unidades as $un => $desc) {
+                    $value = ($un == $unidade) ? "value='$un' selected" : "value='$un'"; ?>
+                    <option <?= $value ?>><?= $desc ?></option>
+                  <?php } ?>
                 </select>
               </div>
               <div class="u-form-group u-form-group-5">

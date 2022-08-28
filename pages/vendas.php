@@ -24,7 +24,6 @@ $produtos = Produto::listar();
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
 	<script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
-
 	<link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
 	<link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
 
@@ -100,16 +99,16 @@ $produtos = Produto::listar();
 			<h2 class="u-text u-text-default u-text-1">PRODUTOS</h2>
 			</BR>
 			<hr color="black">
-			<div>
+			<div class="d-flex justify-content-around">
 				<?php while ($prow = $produtos->fetch()) { ?>
 					<?php if ($prow['qtdEstoque'] > $prow['estoqueMinimo']) { ?>
-						<div class='container-fluid'>
-							<div class="card mx-auto col-md-3 col-10 mt-5">
+						<div class='container-fluid d-flex justify-content-center'>
+							<div class="card">
 								<img class='mx-auto img-thumbnail' src="<?= $prow['imagem'] ?>" width="100px" height="100px" />
 								<div class="card-body text-center mx-auto">
-									<div class='cvp'>
+									<div class='cvp pt-4'>
 										<h5 class="card-title font-weight-bold"><?= $prow['descricao'] ?></h5>
-										<p class="card-text">R$ <?= $prow['valorUnitario'] ?></p>
+										<p class="card-text price">R$ <?= $prow['valorUnitario'] ?></p>
 										<a href="produtoVenda.php?codProduto=<?= $prow['codProduto'] ?>" class="btn cart px-auto">ADICIONAR AO CARRINHO</a>
 									</div>
 								</div>
@@ -117,16 +116,14 @@ $produtos = Produto::listar();
 						</div>
 
 					<?php } else { ?>
-						
-
-						<div class='container-fluid'>
-							<div class="card mx-auto col-md-3 col-10 mt-5">
+						<div class='container-fluid d-flex justify-content-center'>
+							<div class="card">
 								<img class='mx-auto img-thumbnail' src="<?= $prow['imagem'] ?>" width="100px" height="100px" />
 								<div class="card-body text-center mx-auto">
 									<div class='cvp'>
 										<h5 class="card-title font-weight-bold"><?= $prow['descricao'] ?></h5>
 										<h4 class="card-title font-weight-bold" style="color: red;">ESGOTADO!</h4>
-										<p class="card-text">R$ <?= $prow['valorUnitario'] ?></p>
+										<p class="card-text price">R$ <?= $prow['valorUnitario'] ?></p>
 										<a href="formAtualizarProduto.php?codProduto=<?= $prow['codProduto'] ?>&descricao=<?= $prow['descricao'] ?>&valorUnitario=<?= $prow['valorUnitario'] ?>&unidade=<?= $prow['unidade'] ?>&estoqueMinimo=<?= $prow['estoqueMinimo'] ?>&qtdEstoque=<?= $prow['qtdEstoque'] ?>" class="btn cart px-auto">ATUALIZAR ESTOQUE</a>
 									</div>
 								</div>
