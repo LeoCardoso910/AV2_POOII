@@ -3,37 +3,12 @@ require_once __DIR__ . '/../conexaobd/ConexaoBD.php';
 require_once __DIR__ . '/../config.php';
 
 class Cliente{
-    private $cpf;
-    private $nomeCliente;
-    private $email;
-    private $renda;
-    private $classe;
-
-    function __construct($argCpf, $argNomeCliente, $argEmail, $argRenda, $argClasse){
-        $this->cpf = $argCpf;
-        $this->nomeCliente = $argNomeCliente;
-        $this->email = $argEmail;
-        $this->renda = $argRenda;
-        $this->classe = $argClasse;
-    }
 
     public static function listar(){
         $conexao = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
         $sql = "SELECT * FROM cliente";
         $resultado = $conexao->query($sql);
         return $resultado;
-    }
-    
-    public function existe($argCodCliente){
-        $db = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
-        $sql = "SELECT * FROM cliente WHERE cod_cliente = $argCodCliente";
-        $result = $db->existe($sql);
-
-        if($result == true){
-            return true;
-        }
-        return false;
-        
     }
 
     public static function alterar($codCliente, $cpf, $nomeCliente, $email, $renda, $classe){
@@ -48,10 +23,19 @@ class Cliente{
         $db->execute($sql);
     }
 
+    public static function verificaClientesAtivos(){
+        $db = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
+        $sql = "SELECT COUNT(*) as numAtivos FROM cliente WHERE ativo = 1";
+        $result = $db->query($sql)->fetch()['numAtivos'];
+        if ($result > 0){
+            return true;
+        }
+        return false;
+    }
 
     public static function excluir($argCodCliente){
         $db = new ConexaoBD(BANCODEDADOS, USUARIO, SENHA, SERVIDOR);
-        $sql = "DELETE FROM cliente WHERE cod_cliente = $argCodCliente";
+        $sql = "UPDATE cliente SET ativo = 0  WHERE cod_cliente = $argCodCliente";
         $db->execute($sql);
     }
 

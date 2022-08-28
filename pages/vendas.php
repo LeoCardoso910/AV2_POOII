@@ -16,9 +16,11 @@ $produtos = Produto::listar();
 	<meta name="keywords" content="​CADASTRAR VENDAS, LOJA PHP">
 	<meta name="description" content="">
 	<title>VENDAS</title>
-	<link rel="stylesheet" href="../css/style.css" media="screen">
-	<link rel="stylesheet" href="../css/nicepage.css" media="screen">
-	<link rel="stylesheet" href="../css/VENDAS.css" media="screen">
+	<link rel="stylesheet" href="../public/assets/css/style.css" media="screen">
+	<link rel="stylesheet" href="../public/assets/css/nicepage.css" media="screen">
+	<link rel="stylesheet" href="../public/assets/css/VENDAS.css" media="screen">
+	<link rel="shortcut icon" href="../public/assets/img/f69aed53dbb5bcd6f5cc6d7a9c8dda957767ea33ca1c67ac86ad20100f2d5b9e8a075b298c3e3dfac3accdc9edd9c5b19148fad85eb84492668394_1280.png" type="image/x-icon">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
 	<script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
@@ -44,7 +46,7 @@ $produtos = Produto::listar();
 	<header class="u-clearfix u-header u-palette-1-light-2 u-header" id="sec-9fa5">
 		<div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
 			<a href="../index.php" class="u-image u-logo u-image-1" data-image-width="1280" data-image-height="1262">
-				<img src="../img/f69aed53dbb5bcd6f5cc6d7a9c8dda957767ea33ca1c67ac86ad20100f2d5b9e8a075b298c3e3dfac3accdc9edd9c5b19148fad85eb84492668394_1280.png" class="u-logo-image u-logo-image-1">
+				<img src="../public/assets/img/f69aed53dbb5bcd6f5cc6d7a9c8dda957767ea33ca1c67ac86ad20100f2d5b9e8a075b298c3e3dfac3accdc9edd9c5b19148fad85eb84492668394_1280.png" class="u-logo-image u-logo-image-1">
 			</a>
 			<div class="u-list u-list-1">
 				<div class="u-custom-menu u-nav-container">
@@ -58,7 +60,7 @@ $produtos = Produto::listar();
 						<li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-black u-text-hover-palette-2-base" href="clientes.php" style="padding: 10px 20px;">CLIENTES</a>
 						</li>
 						<li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-black u-text-hover-palette-2-base" href="carrinho.php" style="padding: 10px 20px;">CARRINHO <i class="fa-solid fa-cart-shopping"></i></a>
-            			</li>
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -95,31 +97,42 @@ $produtos = Produto::listar();
 	</section>
 	<section class="u-align-center u-clearfix u-gradient u-section-2" id="carousel_cfa9">
 		<div class="u-clearfix u-sheet u-sheet-1">
-			<h2 class="u-text u-text-default u-text-1">VENDA</h2>
+			<h2 class="u-text u-text-default u-text-1">PRODUTOS</h2>
 			</BR>
-			<hr>
-			<h1>PRODUTOS</h1>
-			<div style="
-					display: flex;
-					justify-content: space-between;">
+			<hr color="black">
+			<div>
 				<?php while ($prow = $produtos->fetch()) { ?>
-					<?php if($prow['qtdEstoque'] > $prow['estoqueMinimo']) { ?>
-						<div class="product">
-							<a style="color: black;" href="produtoVenda.php?codProduto=<?= $prow['codProduto'] ?>">
-								<h4><?= $prow['descricao'] ?></h4>
-								<img width="150px" height="150px" src="<?= $prow['imagem'] ?>" alt="">
-								<h5>R$ <?= $prow['valorUnitario'] ?></h5>
-							</a>
+					<?php if ($prow['qtdEstoque'] > $prow['estoqueMinimo']) { ?>
+						<div class='container-fluid'>
+							<div class="card mx-auto col-md-3 col-10 mt-5">
+								<img class='mx-auto img-thumbnail' src="<?= $prow['imagem'] ?>" width="100px" height="100px" />
+								<div class="card-body text-center mx-auto">
+									<div class='cvp'>
+										<h5 class="card-title font-weight-bold"><?= $prow['descricao'] ?></h5>
+										<p class="card-text">R$ <?= $prow['valorUnitario'] ?></p>
+										<a href="produtoVenda.php?codProduto=<?= $prow['codProduto'] ?>" class="btn cart px-auto">ADICIONAR AO CARRINHO</a>
+									</div>
+								</div>
+							</div>
 						</div>
+
 					<?php } else { ?>
-						<div class="product">
-						<a style="color: black;" href="formAtualizarProduto.php?codProduto=<?= $prow['codProduto'] ?>&descricao=<?= $prow['descricao'] ?>&valorUnitario=<?= $prow['valorUnitario'] ?>&unidade=<?= $prow['unidade'] ?>&estoqueMinimo=<?= $prow['estoqueMinimo'] ?>&qtdEstoque=<?= $prow['qtdEstoque'] ?>">
-							<h4><?= $prow['descricao'] ?></h4>
-							<h3 style="color: black; font-weight: bold;">ESGOTADO!</h3>
-							<img width="150px" height="150px" src="<?= $prow['imagem'] ?>" alt="">
-							<h5>R$ <?= $prow['valorUnitario'] ?></h5>
-						</a>
-					</div>
+						
+
+						<div class='container-fluid'>
+							<div class="card mx-auto col-md-3 col-10 mt-5">
+								<img class='mx-auto img-thumbnail' src="<?= $prow['imagem'] ?>" width="100px" height="100px" />
+								<div class="card-body text-center mx-auto">
+									<div class='cvp'>
+										<h5 class="card-title font-weight-bold"><?= $prow['descricao'] ?></h5>
+										<h4 class="card-title font-weight-bold" style="color: red;">ESGOTADO!</h4>
+										<p class="card-text">R$ <?= $prow['valorUnitario'] ?></p>
+										<a href="formAtualizarProduto.php?codProduto=<?= $prow['codProduto'] ?>&descricao=<?= $prow['descricao'] ?>&valorUnitario=<?= $prow['valorUnitario'] ?>&unidade=<?= $prow['unidade'] ?>&estoqueMinimo=<?= $prow['estoqueMinimo'] ?>&qtdEstoque=<?= $prow['qtdEstoque'] ?>" class="btn cart px-auto">ATUALIZAR ESTOQUE</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						
 					<?php } ?>
 				<?php } ?>
 			</div>

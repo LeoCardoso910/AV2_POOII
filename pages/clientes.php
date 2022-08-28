@@ -26,9 +26,10 @@ isset($_GET['msg']) ? ($_GET['msg'] != 'cpfInvalido' ? alertErro() : '') : '';
   <meta name="keywords" content="CADASTRAR CLIENTE, LOJA PHP">
   <meta name="description" content="">
   <title>CLIENTES</title>
-  <link rel="stylesheet" href="../css/nicepage.css" media="screen">
-  <link rel="stylesheet" href="../css/CLIENTES.css" media="screen">
-  <link rel="stylesheet" href="../css/style.css" media="screen">
+  <link rel="stylesheet" href="../public/assets/css/nicepage.css" media="screen">
+  <link rel="stylesheet" href="../public/assets/css/CLIENTES.css" media="screen">
+  <link rel="stylesheet" href="../public/assets/css/style.css" media="screen">
+  <link rel="shortcut icon" href="../public/assets/img/f69aed53dbb5bcd6f5cc6d7a9c8dda957767ea33ca1c67ac86ad20100f2d5b9e8a075b298c3e3dfac3accdc9edd9c5b19148fad85eb84492668394_1280.png" type="image/x-icon">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
   <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
@@ -51,7 +52,7 @@ isset($_GET['msg']) ? ($_GET['msg'] != 'cpfInvalido' ? alertErro() : '') : '';
   <header class="u-clearfix u-header u-palette-1-light-2 u-header" id="sec-9fa5">
     <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
       <a href="../index.php" class="u-image u-logo u-image-1" data-image-width="1280" data-image-height="1262">
-        <img src="../img/f69aed53dbb5bcd6f5cc6d7a9c8dda957767ea33ca1c67ac86ad20100f2d5b9e8a075b298c3e3dfac3accdc9edd9c5b19148fad85eb84492668394_1280.png" class="u-logo-image u-logo-image-1">
+        <img src="../public/assets/img/f69aed53dbb5bcd6f5cc6d7a9c8dda957767ea33ca1c67ac86ad20100f2d5b9e8a075b298c3e3dfac3accdc9edd9c5b19148fad85eb84492668394_1280.png" class="u-logo-image u-logo-image-1">
       </a>
       <div class="u-list u-list-1">
         <div class="u-custom-menu u-nav-container">
@@ -105,6 +106,7 @@ isset($_GET['msg']) ? ($_GET['msg'] != 'cpfInvalido' ? alertErro() : '') : '';
                 <td class="u-align-center u-table-cell"><?= $row['email'] ?></td>
                 <td class="u-align-center u-table-cell">R$ <?= str_replace('.', ',', $row['renda']) ?></td>
                 <td class="u-align-center u-table-cell"><?= $row['classe'] ?></td>
+                <?php if($row['ativo'] == 1){ ?>
                 <td class="u-align-center u-table-cell">
                   <a href="formAtualizarCliente.php?codCliente=<?= $row['cod_cliente'] ?>&cpf=<?= $row['cpf'] ?>&nomeCliente=<?= $row['nomeCliente'] ?>&email=<?= $row['email'] ?>&renda=<?= $row['renda'] ?>">
                     <i class="fa-solid fa-pen-to-square"></i>
@@ -115,6 +117,9 @@ isset($_GET['msg']) ? ($_GET['msg'] != 'cpfInvalido' ? alertErro() : '') : '';
                     <i class="fa-solid fa-trash-can"></i>
                   </a>
                 </td>
+                <?php } else{ ?>
+                  <td class="u-align-center u-table-cell" colspan="2"><strong>Inativo</strong></td>
+                <?php } ?>
               </tr>
             <?php } ?>
           </tbody>
@@ -131,7 +136,7 @@ isset($_GET['msg']) ? ($_GET['msg'] != 'cpfInvalido' ? alertErro() : '') : '';
             <form action="../interfaces/cadastro/cadastrarCliente.php" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" source="email" name="form" style="padding: 0px;">
               <div class="u-form-email u-form-group">
                 <label for="text-4c18" class="u-label">CPF</label>
-                <input type="text" pattern="[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}" placeholder="Digite o CPF do Cliente sem pontos nem traço" id="text-4c18" name="cpf" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="">
+                <input type="text" pattern="\b\d{11}\b" placeholder="Digite os 11 dígitos do CPF do Cliente" id="text-4c18" name="cpf" class="u-border-2 u-border-palette-4-light-3 u-input u-input-rectangle u-palette-4-light-3 u-radius-10" required="">
               </div>
               <div class="u-form-group u-form-group-3">
                 <label for="text-302c" class="u-label">NOME DO CLIENTE</label>

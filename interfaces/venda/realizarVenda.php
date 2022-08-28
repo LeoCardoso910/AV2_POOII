@@ -9,7 +9,7 @@
     
     Venda::incluir($codCliente, $dataVenda);
 
-    $codVenda = Venda::ultimaVenda()["MAX(codVenda)"];
+    $codVenda = Venda::ultimaVenda();
 
 
     foreach ($_SESSION['carrinho'] as $key => $value) {

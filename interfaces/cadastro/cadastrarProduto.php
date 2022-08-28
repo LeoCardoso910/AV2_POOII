@@ -7,7 +7,7 @@
     $estoqueMinimo = isset($_POST['estoqueMinimo']) ? strip_tags($_POST['estoqueMinimo']) : null;
     $qtdEstoque = isset($_POST['qtdEstoque']) ? strip_tags($_POST['qtdEstoque']) : null;
 
-   if ($qtdEstoque > $estoqueMinimo){
+   if ($qtdEstoque >= $estoqueMinimo){
        Produto::incluir($descricao, $valorUnitario, $unidade, $estoqueMinimo, $qtdEstoque);
        header('Location: ../../pages/produtos.php');
    } else{

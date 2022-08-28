@@ -5,8 +5,9 @@
     <meta name="keywords" content="LOJA PHP">
     <meta name="description" content="">
     <title>LOJA PHP</title>
-    <link rel="stylesheet" href="css/nicepage.css" media="screen">
-	  <link rel="stylesheet" href="css/LOJA-PHP.css" media="screen">
+    <link rel="stylesheet" href="public/assets/css/nicepage.css" media="screen">
+	  <link rel="stylesheet" href="public/assets/css/LOJA-PHP.css" media="screen">
+    <link rel="shortcut icon" href="public/assets/img/f69aed53dbb5bcd6f5cc6d7a9c8dda957767ea33ca1c67ac86ad20100f2d5b9e8a075b298c3e3dfac3accdc9edd9c5b19148fad85eb84492668394_1280.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
   <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
@@ -32,7 +33,7 @@
   <header class="u-clearfix u-header u-palette-1-light-2 u-header" id="sec-9fa5">
     <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
       <a class="u-image u-logo u-image-1" data-image-width="1280" data-image-height="1262">
-        <img src="img/f69aed53dbb5bcd6f5cc6d7a9c8dda957767ea33ca1c67ac86ad20100f2d5b9e8a075b298c3e3dfac3accdc9edd9c5b19148fad85eb84492668394_1280.png" class="u-logo-image u-logo-image-1">
+        <img src="public/assets/img/f69aed53dbb5bcd6f5cc6d7a9c8dda957767ea33ca1c67ac86ad20100f2d5b9e8a075b298c3e3dfac3accdc9edd9c5b19148fad85eb84492668394_1280.png" class="u-logo-image u-logo-image-1">
       </a>
       <div class="u-list u-list-1">
         <div class="u-custom-menu u-nav-container">
@@ -57,7 +58,7 @@
       <div class="u-expanded-width u-list u-list-1">
         <div class="u-repeater u-repeater-1">
           <div class="u-align-center u-container-style u-grey-5 u-list-item u-radius-15 u-repeater-item u-shape-round u-list-item-1">
-            <div class="u-container-layout u-similar-container u-container-layout-1"><span class="u-file-icon u-icon u-icon-rounded u-palette-1-base u-radius-10 u-icon-1"><img src="img/3703259.png" alt=""></span>
+            <div class="u-container-layout u-similar-container u-container-layout-1"><span class="u-file-icon u-icon u-icon-rounded u-palette-1-base u-radius-10 u-icon-1"><img src="public/assets/img/3703259.png" alt=""></span>
               <h5 class="u-custom-font u-font-raleway u-text u-text-1">PRODUTOS</h5>
               <p class="u-text u-text-2">&gt; Lista ​​de produtos disponíveis<br>&gt; Cadastrar Produtos
               </p>
@@ -65,15 +66,15 @@
             </div>
           </div>
           <div class="u-align-center u-container-style u-grey-5 u-list-item u-radius-15 u-repeater-item u-shape-round u-list-item-2">
-            <div class="u-container-layout u-similar-container u-container-layout-2"><span class="u-file-icon u-icon u-icon-rounded u-palette-1-base u-radius-10 u-icon-2"><img src="img/679847.png" alt=""></span>
+            <div class="u-container-layout u-similar-container u-container-layout-2"><span class="u-file-icon u-icon u-icon-rounded u-palette-1-base u-radius-10 u-icon-2"><img src="public/assets/img/679847.png" alt=""></span>
               <h5 class="u-custom-font u-font-raleway u-text u-text-3">VENDAS</h5>
-              <p class="u-text u-text-4">&gt; Lista de vendas<br>&gt; Detalhamento de vendas<br>&gt; Cadastrar vendas
+              <p class="u-text u-text-4">&gt; Lista de vendas<br>&gt; Detalhamento de vendas<br>&gt; Adicionar produtos ao carrinho
               </p>
               <a href="pages/vendas.php" class="u-active-none u-border-2 u-border-active-black u-border-hover-black u-border-palette-1-base u-btn u-button-style u-hover-none u-none u-text-body-color u-text-hover-palette-1-base u-btn-2">ACESSAR VENDAS</a>
             </div>
           </div>
           <div class="u-align-center u-container-style u-grey-5 u-list-item u-radius-15 u-repeater-item u-shape-round u-list-item-3">
-            <div class="u-container-layout u-similar-container u-container-layout-3"><span class="u-file-icon u-icon u-icon-rounded u-palette-1-base u-radius-10 u-icon-3"><img src="img/1256650.png" alt=""></span>
+            <div class="u-container-layout u-similar-container u-container-layout-3"><span class="u-file-icon u-icon u-icon-rounded u-palette-1-base u-radius-10 u-icon-3"><img src="public/assets/img/1256650.png" alt=""></span>
               <h5 class="u-custom-font u-font-raleway u-text u-text-5">CLIENTES</h5>
               <p class="u-text u-text-6">&gt; Lista de Clientes<br>&gt; Cadastrar clientes
               </p>

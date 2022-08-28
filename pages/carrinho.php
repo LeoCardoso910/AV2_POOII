@@ -3,6 +3,7 @@ session_start();
 require_once __DIR__ . '/../class/Produto.php';
 require_once __DIR__ . '/../class/Cliente.php';
 $clientes = Cliente::listar();
+$existeClientesAtivos = Cliente::verificaClientesAtivos();
 ?>
 <!DOCTYPE html>
 <html style="font-size: 16px;" lang="pt">
@@ -13,8 +14,12 @@ $clientes = Cliente::listar();
 	<meta name="keywords" content="CADASTRAR CLIENTE, LOJA PHP">
 	<meta name="description" content="">
 	<title>CARRINHO</title>
-	<link rel="stylesheet" href="../css/nicepage.css" media="screen">
-	<link rel="stylesheet" href="../css/PRODUTOS.css" media="screen">
+	<link rel="stylesheet" href="../public/assets/css/nicepage.css" media="screen">
+	<link rel="stylesheet" href="../public/assets/css/PRODUTOS.css" media="screen">
+	<link rel="stylesheet" href="../public/assets/css/style.css" media="screen">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+	<link rel="shortcut icon" href="../public/assets/img/f69aed53dbb5bcd6f5cc6d7a9c8dda957767ea33ca1c67ac86ad20100f2d5b9e8a075b298c3e3dfac3accdc9edd9c5b19148fad85eb84492668394_1280.png" type="image/x-icon">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
 	<script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -40,7 +45,7 @@ $clientes = Cliente::listar();
 	<header class="u-clearfix u-header u-palette-1-light-2 u-header" id="sec-9fa5">
 		<div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
 			<a class="u-image u-logo u-image-1" data-image-width="1280" data-image-height="1262">
-				<img src="../img/f69aed53dbb5bcd6f5cc6d7a9c8dda957767ea33ca1c67ac86ad20100f2d5b9e8a075b298c3e3dfac3accdc9edd9c5b19148fad85eb84492668394_1280.png" class="u-logo-image u-logo-image-1">
+				<img src="../public/assets/img/f69aed53dbb5bcd6f5cc6d7a9c8dda957767ea33ca1c67ac86ad20100f2d5b9e8a075b298c3e3dfac3accdc9edd9c5b19148fad85eb84492668394_1280.png" class="u-logo-image u-logo-image-1">
 			</a>
 			<div class="u-list u-list-1">
 				<div class="u-custom-menu u-nav-container">
@@ -53,7 +58,8 @@ $clientes = Cliente::listar();
 						</li>
 						<li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-black u-text-hover-palette-2-base" href="clientes.php" style="padding: 10px 20px;">CLIENTES</a>
 						</li>
-
+						<li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-black u-text-hover-palette-2-base" href="carrinho.php" style="padding: 10px 20px;">CARRINHO <i class="fa-solid fa-cart-shopping"></i></a>
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -76,32 +82,51 @@ $clientes = Cliente::listar();
 							$produto = Produto::listarPorId($codProduto);
 							$subtotal = $quantidade * $produto['valorUnitario'];
 						?>
-							<h4>
-								<span>Produto: <?= $produto['descricao'] ?></span> </br>
-								<span id="valUnit">Valor unitário: <?= $produto['valorUnitario'] ?></span></br>
-								Quantidade: <input min="1" max="<?= $produto['qtdEstoque'] - $produto['estoqueMinimo'] ?>" type="number" name="<?= $codProduto ?>" id="<?= $codProduto ?>" value="<?= $quantidade ?>"></br>
-								<span id="subTotal<?= $codProduto ?>">Valor: R$ <?= $subtotal ?></span>
-							</h4>
+							<div class='container-fluid'>
+								<div class="card mx-auto col-md-3 col-10 mt-5">
+									<img class='mx-auto img-thumbnail' src="<?= $produto['imagem'] ?>" width="100px" height="100px" />
+									<div class="card-body text-center mx-auto">
+										<div class='cvp'>
+											<h5 class="card-title font-weight-bold"><?= $produto['descricao'] ?></h5>
+											<p class="card-text">R$ <?= $produto['valorUnitario'] ?></p>
+											<p class="card-text">Quantidade: <input min="1" max="<?= $produto['qtdEstoque'] - $produto['estoqueMinimo'] ?>" type="number" name="<?= $codProduto ?>" id="<?= $codProduto ?>" value="<?= $quantidade ?>"></br></p>
+											<span class="card-text" id="subTotal<?= $codProduto ?>">Subtotal: R$ <?= $subtotal ?></span>
+										</div>
+									</div>
+								</div>
+							</div>
 						<?php } ?>
-
-						<h3><a style="color: purple;" href="vendas.php#carousel_cfa9">Adicionar mais produtos</a></h3>
-
+						<br>
+						<a href="vendas.php#carousel_cfa9">
+							<button type="button" class=" u-active-palette-3-light-1 u-border-5 u-border-active-palette-4-light-1 u-border-hover-palette-4-light-1 u-border-palette-4-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-4-light-1 u-palette-4-base u-radius-10 u-btn-1">Adicionar mais Produtos</button>
+						</a>
 						<hr>
-
-						<h5 id="total">Total: R$ <?= $_SESSION['valorCarrinho']?></h5>
 						</br>
-						<h1>Vender para: </h1>
-						<select name="cliente" id="cliente">
-							<?php while ($crow = $clientes->fetch()) { ?>
-								<option value="<?= $crow['cod_cliente'] ?>"><?= $crow['nomeCliente'] ?></option>
-							<?php } ?>
-						</select>
-						<input type="hidden" name="dataVenda" id="datVenda" value="<?= date('Y/m/d') ?>">
-						<input type="submit" value="Vender">
+						<?php if ($existeClientesAtivos) { ?>
+							<h1>Realizar venda: </h1>
+							<h3 id="total" class="fw-bold">Total: R$ <?= $_SESSION['valorCarrinho'] ?></h3>
+							<div class="d-flex flex-row p-3 align-items-center justify-content-center">
+								<div class="fs-4 fw-bold pe-3">
+									Comprador:
+								</div>
+								<div class="fw-bold">
+									<select class="u-active-palette-4-light-2 u-border-none u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-4-light-1 u-radius-9 u-text-body-alt-color u-text-hover-white u-btn-1" name="cliente" id="cliente">
+										<?php while ($crow = $clientes->fetch()) { ?>
+											<option value="<?= $crow['cod_cliente'] ?>"><?= $crow['nomeCliente'] ?></option>
+										<?php } ?>
+									</select>
+								</div>
+							</div>
+							<input type="hidden" name="dataVenda" id="datVenda" value="<?= date('Y/m/d') ?>">
+							<button type="submit" class="u-active-palette-3-light-1 u-border-5 u-border-active-palette-4-light-1 u-border-hover-palette-4-light-1 u-border-palette-4-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-4-light-1 u-palette-4-base u-radius-10 u-btn-1">Vender</button>
+							</h3>
+						<?php } else { ?>
+							<h3><strong>Não há clientes aptos para comprar.</strong></h3>
+							<a href="clientes.php#carousel_ae01">
+								<button type="button" class="u-active-palette-3-light-1 u-border-5 u-border-active-palette-4-light-1 u-border-hover-palette-4-light-1 u-border-palette-4-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-4-light-1 u-palette-4-base u-radius-10 u-btn-1">Adicionar novo Cliente</button>
+							</a>
+						<?php } ?>
 					</form>
-
-
-
 				</div>
 			</div>
 		</section>
@@ -128,8 +153,7 @@ $clientes = Cliente::listar();
 </body>
 
 <script>
-
-<?php
+	<?php
 	foreach ($_SESSION['carrinho'] as $key => $value) {
 		$data = explode('-', $value);
 		$codProduto = $data[0];
@@ -171,8 +195,6 @@ $clientes = Cliente::listar();
 		});
 		return total;
 	}
-
-	
 </script>
 
 </html>

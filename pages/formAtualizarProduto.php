@@ -9,7 +9,6 @@ $estoqueMinimo = isset($_GET['estoqueMinimo']) ? $_GET['estoqueMinimo'] : null;
 $qtdEstoque = isset($_GET['qtdEstoque']) ? $_GET['qtdEstoque'] : null;
 $unidades = isset($_SESSION['units']) ? unserialize($_SESSION['units']) : null;
 
-$query = Produto::listar();
 ?>
 <!DOCTYPE html>
 <html style="font-size: 16px;" lang="pt">
@@ -20,8 +19,9 @@ $query = Produto::listar();
   <meta name="keywords" content="CADASTRAR CLIENTE, LOJA PHP">
   <meta name="description" content="">
   <title>ATUALIZAR PRODUTO</title>
-  <link rel="stylesheet" href="../css/nicepage.css" media="screen">
-  <link rel="stylesheet" href="../css/PRODUTOS.css" media="screen">
+  <link rel="stylesheet" href="../public/assets/css/nicepage.css" media="screen">
+  <link rel="stylesheet" href="../public/assets/css/PRODUTOS.css" media="screen">
+  <link rel="shortcut icon" href="../public/assets/img/f69aed53dbb5bcd6f5cc6d7a9c8dda957767ea33ca1c67ac86ad20100f2d5b9e8a075b298c3e3dfac3accdc9edd9c5b19148fad85eb84492668394_1280.png" type="image/x-icon">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
   <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
@@ -48,7 +48,7 @@ $query = Produto::listar();
   <header class="u-clearfix u-header u-palette-1-light-2 u-header" id="sec-9fa5">
     <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
       <a href="../index.php" class="u-image u-logo u-image-1" data-image-width="1280" data-image-height="1262">
-        <img src="../img/f69aed53dbb5bcd6f5cc6d7a9c8dda957767ea33ca1c67ac86ad20100f2d5b9e8a075b298c3e3dfac3accdc9edd9c5b19148fad85eb84492668394_1280.png" class="u-logo-image u-logo-image-1">
+        <img src="../public/assets/img/f69aed53dbb5bcd6f5cc6d7a9c8dda957767ea33ca1c67ac86ad20100f2d5b9e8a075b298c3e3dfac3accdc9edd9c5b19148fad85eb84492668394_1280.png" class="u-logo-image u-logo-image-1">
       </a>
       <div class="u-list u-list-1">
         <div class="u-custom-menu u-nav-container">
@@ -88,11 +88,11 @@ $query = Produto::listar();
               </div>
               <div class="u-form-group u-form-group-4">
                 <label for="unidade" class="u-label">UNIDADE</label>
-                <select name="unidade" id="unidade" required>
-                  <?php foreach ($unidades as $un => $desc) {
-                    $value = ($un == $unidade) ? "value='$un' selected" : "value='$un'"; ?>
-                    <option <?= $value ?>><?= $desc ?></option>
-                  <?php } ?>
+                <select class="u-active-palette-4-light-2 u-border-none u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-4-light-1 u-radius-9 u-text-body-alt-color u-text-hover-white u-btn-1" name="unidade" id="unidade" required>
+                  <option value="KG">QUILOGRAMA</option>
+                  <option value="LT">LITRO</option>
+                  <option value="UN">UNIDADE</option>
+                  <option value="MT">METRO</option>
                 </select>
               </div>
               <div class="u-form-group u-form-group-5">

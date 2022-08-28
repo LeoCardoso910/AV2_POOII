@@ -29,23 +29,4 @@ class ConexaoBD
     {
         return $this->BancoLink->query($sql);
     }
-    public function logicoSql()
-    {
-    }
-    public function pontoVirgula()
-    {
-    }
-    public function dataSql()
-    {
-    }
-    public function valorSql()
-    {
-    }
-    public function existe($sql){
-        $result = $this->BancoLink->query($sql)->fetchColumn();
-        if($result > 0){
-            return true;
-        }
-        return false;
-    }
 }
