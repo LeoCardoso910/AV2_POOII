@@ -68,9 +68,11 @@ $existeClientesAtivos = Cliente::verificaClientesAtivos();
 
 	<?php if (isset($_SESSION['carrinho'])) { ?>
 
-		<section class="u-align-center u-clearfix u-gradient u-section-1" id="sec-c648">
+		<section class=" u-align-center u-clearfix u-gradient u-section-1" id="sec-c648">
 			<div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
 				<div class="u-expanded-width u-table u-table-responsive u-table-1">
+					<div class="conteudo">
+					<div class="sellArea">
 					<h1>Produtos adicionados</h1>
 					<hr>
 					<form action="../interfaces//venda/realizarVenda.php" method="POST">
@@ -106,7 +108,7 @@ $existeClientesAtivos = Cliente::verificaClientesAtivos();
 						<hr>
 						</br>
 						<?php if ($existeClientesAtivos) { ?>
-							<div id="sellArea">
+						
 							<h1>Realizar venda: </h1>
 							<h3 id="total" class="fw-bold">Total: R$ <?= $_SESSION['valorCarrinho'] ?></h3>
 							<div class="d-flex flex-row p-3 align-items-center justify-content-center">
@@ -124,7 +126,7 @@ $existeClientesAtivos = Cliente::verificaClientesAtivos();
 							<input type="hidden" name="dataVenda" id="datVenda" value="<?= date('Y/m/d') ?>">
 							<button type="submit" class="u-active-palette-3-light-1 u-border-5 u-border-active-palette-4-light-1 u-border-hover-palette-4-light-1 u-border-palette-4-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-4-light-1 u-palette-4-base u-radius-10 u-btn-1">Vender</button>
 							</h3>
-							</div>
+							
 						<?php } else { ?>
 							<h3><strong>Não há clientes aptos para comprar.</strong></h3>
 							<a href="clientes.php#carousel_ae01">
@@ -132,6 +134,8 @@ $existeClientesAtivos = Cliente::verificaClientesAtivos();
 							</a>
 						<?php } ?>
 					</form>
+					</div>
+					</div>
 				</div>
 			</div>
 		</section>
@@ -187,7 +191,9 @@ $existeClientesAtivos = Cliente::verificaClientesAtivos();
 
 	$(document).ready(async function(){
 		if(await getTotal() == 0){
-			$('#sellArea').hide();
+			$('.sellArea').hide();
+			$('.conteudo').append('<h1>Carrinho vazio</h1><h3><a class="u-active-palette-4-light-1 u-border-5 u-border-active-palette-4-light-1 u-border-hover-palette-4-light-1 u-border-palette-4-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-4-light-1 u-palette-4-base u-radius-10 u-btn-1" href="vendas.php#carousel_cfa9">Adicionar produtos</a></h3>');
+
 		}
 		$('#total').html('Total: R$ ' + await getTotal());
 	});	
