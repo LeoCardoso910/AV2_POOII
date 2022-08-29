@@ -7,8 +7,11 @@
     <title>LOJA PHP</title>
     <link rel="stylesheet" href="public/assets/css/nicepage.css" media="screen">
 	  <link rel="stylesheet" href="public/assets/css/LOJA-PHP.css" media="screen">
+    <link rel="stylesheet" href="public/assets/css/style.css" media="screen">
     <link rel="shortcut icon" href="public/assets/img/f69aed53dbb5bcd6f5cc6d7a9c8dda957767ea33ca1c67ac86ad20100f2d5b9e8a075b298c3e3dfac3accdc9edd9c5b19148fad85eb84492668394_1280.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="public/assets/css/style.css" media="screen">
   <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
   <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
 
@@ -35,22 +38,22 @@
       <a class="u-image u-logo u-image-1" data-image-width="1280" data-image-height="1262">
         <img src="public/assets/img/f69aed53dbb5bcd6f5cc6d7a9c8dda957767ea33ca1c67ac86ad20100f2d5b9e8a075b298c3e3dfac3accdc9edd9c5b19148fad85eb84492668394_1280.png" class="u-logo-image u-logo-image-1">
       </a>
-      <div class="u-list u-list-1">
+      <div class="pt-2 u-list u-list-1">
         <div class="u-custom-menu u-nav-container">
-          <ul class="u-nav u-unstyled u-nav-1">
-            <li class="u-nav-item"><a class="u-nav-link u-text-active-black u-text-hover-palette-2-base" href="index.php" style="padding: 10px 20px;">LOJA PHP</a>
+          <ul class="u-nav nav nav-tabs u-unstyled u-nav-1">
+            <li class="u-nav-item nav-item "><a class="u-nav-link active nav-link " href="index.php" style="padding: 10px 20px;">LOJA PHP</a>
 	          </li>
-            <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-black u-text-hover-palette-2-base" href="pages/produtos.php" style="padding: 10px 20px;">PRODUTOS</a>
+            <li class="u-nav-item"><a class="u-button-style u-nav-link nav-link" href="pages/produtos.php" style="padding: 10px 20px;">PRODUTOS</a>
             </li>
-            <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-black u-text-hover-palette-2-base" href="pages/VENDAS.php" style="padding: 10px 20px;">VENDAS</a>
+            <li class="u-nav-item"><a class="u-button-style u-nav-link nav-link" href="pages/VENDAS.php" style="padding: 10px 20px;">VENDAS</a>
             </li>
-            <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-black u-text-hover-palette-2-base" href="pages/clientes.php" style="padding: 10px 20px;">CLIENTES</a>
+            <li class="u-nav-item"><a class="u-button-style u-nav-link nav-link" href="pages/clientes.php" style="padding: 10px 20px;">CLIENTES</a>
             </li>
-            <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-black u-text-hover-palette-2-base" href="pages/carrinho.php" style="padding: 10px 20px;">CARRINHO <i class="fa-solid fa-cart-shopping"></i></a>
+            <li class="u-nav-item"><a class="u-button-style u-nav-link nav-link" href="pages/carrinho.php" style="padding: 10px 20px;">CARRINHO <i class="fa-solid fa-cart-shopping"></i></a>
             </li>
           </ul>
         </div>
-	</div>
+	  </div>
        
   </header>
   <section class="u-align-left u-clearfix u-image u-section-1" id="carousel_fc6f" data-image-width="1920" data-image-height="960">

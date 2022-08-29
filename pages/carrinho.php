@@ -42,29 +42,29 @@ $existeClientesAtivos = Cliente::verificaClientesAtivos();
 </head>
 
 <body class="u-body u-xl-mode" data-lang="pt">
-	<header class="u-clearfix u-header u-palette-1-light-2 u-header" id="sec-9fa5">
-		<div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-			<a class="u-image u-logo u-image-1" data-image-width="1280" data-image-height="1262">
-				<img src="../public/assets/img/f69aed53dbb5bcd6f5cc6d7a9c8dda957767ea33ca1c67ac86ad20100f2d5b9e8a075b298c3e3dfac3accdc9edd9c5b19148fad85eb84492668394_1280.png" class="u-logo-image u-logo-image-1">
-			</a>
-			<div class="u-list u-list-1">
-				<div class="u-custom-menu u-nav-container">
-					<ul class="u-nav u-unstyled u-nav-1">
-						<li class="u-nav-item"><a class="u-nav-link u-text-active-black u-text-hover-palette-2-base" href="../index.php" style="padding: 10px 20px;">LOJA PHP</a>
-						</li>
-						<li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-black u-text-hover-palette-2-base" href="produtos.php" style="padding: 10px 20px;">PRODUTOS</a>
-						</li>
-						<li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-black u-text-hover-palette-2-base" href="VENDAS.php" style="padding: 10px 20px;">VENDAS</a>
-						</li>
-						<li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-black u-text-hover-palette-2-base" href="clientes.php" style="padding: 10px 20px;">CLIENTES</a>
-						</li>
-						<li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-black u-text-hover-palette-2-base" href="carrinho.php" style="padding: 10px 20px;">CARRINHO <i class="fa-solid fa-cart-shopping"></i></a>
-						</li>
-					</ul>
-				</div>
-			</div>
-
-	</header>
+<header class="u-clearfix u-header u-palette-1-light-2 u-header" id="sec-9fa5">
+    <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+      <a class="u-image u-logo u-image-1" data-image-width="1280" data-image-height="1262">
+        <img src="../public/assets/img/f69aed53dbb5bcd6f5cc6d7a9c8dda957767ea33ca1c67ac86ad20100f2d5b9e8a075b298c3e3dfac3accdc9edd9c5b19148fad85eb84492668394_1280.png" class="u-logo-image u-logo-image-1">
+      </a>
+      <div class="pt-2 u-list u-list-1">
+        <div class="u-custom-menu u-nav-container">
+          <ul class="u-nav nav nav-tabs u-unstyled u-nav-1">
+            <li class="u-nav-item nav-item "><a class="u-nav-link nav-link " href="../index.php" style="padding: 10px 20px;">LOJA PHP</a>
+	          </li>
+            <li class="u-nav-item"><a class="u-button-style u-nav-link nav-link" href="produtos.php" style="padding: 10px 20px;">PRODUTOS</a>
+            </li>
+            <li class="u-nav-item"><a class="u-button-style u-nav-link nav-link" href="VENDAS.php" style="padding: 10px 20px;">VENDAS</a>
+            </li>
+            <li class="u-nav-item"><a class="u-button-style u-nav-link nav-link" href="clientes.php" style="padding: 10px 20px;">CLIENTES</a>
+            </li>
+            <li class="u-nav-item"><a class="u-button-style u-nav-link active nav-link" href="carrinho.php" style="padding: 10px 20px;">CARRINHO <i class="fa-solid fa-cart-shopping"></i></a>
+            </li>
+          </ul>
+        </div>
+	  </div>
+       
+</header>
 
 	<?php if (isset($_SESSION['carrinho'])) { ?>
 
